@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "info": "Info",
+    "contacts": "Contacts",
+    "gallery": "Gallery",
+    "prices": "Prices",
+    "map": "Map",
+    "book": "Book"
+  },
+  "hero": {
+    "title": "UCU INN",
+    "location": "Located in Collegium 2, Kozelnytska Street, 2, Lviv",
+    "bookNow": "Book Now"
+  }
+}
