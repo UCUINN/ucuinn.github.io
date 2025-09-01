@@ -17,16 +17,16 @@ const PriceList = () => {
     {
       type: "twin",
       prices: [
-        { guests: t("prices.oneGuest"), amount: 1400 },
-        { guests: t("prices.twoGuests"), amount: 1700 },
+        { guests: t("prices.oneGuest"), amount: 1500 },
+        { guests: t("prices.twoGuests"), amount: 1800 },
       ],
     },
     {
       type: "suite",
       prices: [
-        { guests: t("prices.oneGuest"), amount: 1700 },
-        { guests: t("prices.twoGuests"), amount: 2000 },
-        { guests: t("prices.threeGuests"), amount: 2300 },
+        { guests: t("prices.oneGuest"), amount: 1800 },
+        { guests: t("prices.twoGuests"), amount: 2200 },
+        { guests: t("prices.threeGuests"), amount: 2500 },
       ],
     },
   ];
@@ -125,7 +125,7 @@ const PriceList = () => {
                 <p>
                   {t("prices.additionalInfo.breakfast")}{' '}
                   <span className="font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded">
-                    200 {t("prices.currency")}
+                    300 {t("prices.currency")}
                   </span>
                 </p>
                 <p>

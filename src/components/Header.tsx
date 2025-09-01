@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Accessibility } from 'lucide-react';
 import { cn } from '../utils/ui';
 
 const Header = () => {
@@ -101,6 +101,19 @@ const Header = () => {
               </div>
               <span className="text-sm font-medium">096-75-67-206</span>
             </a>
+
+            {/* Accessibility Link */}
+            <a
+              href="https://forms.gle/CaMuKHii8wsFkQZy9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-110"
+              title="Accessibility Service"
+            >
+              <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm hover:shadow-md hover:bg-blue-200 transition-all duration-300">
+                <Accessibility className="w-5 h-5 text-blue-700" />
+              </div>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -146,6 +159,21 @@ const Header = () => {
                 <Phone className="w-5 h-5" />
               </div>
               <span className="font-medium">096-75-67-206</span>
+            </a>
+
+            {/* Mobile Accessibility Link */}
+            <a
+              href="https://forms.gle/CaMuKHii8wsFkQZy9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-primary-600 hover:bg-blue-100 rounded-xl transition-all duration-300 border border-blue-200 bg-blue-50"
+              onClick={() => setIsMenuOpen(false)}
+              title="Accessibility Service"
+            >
+              <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
+                <Accessibility className="w-6 h-6 text-blue-700" />
+              </div>
+              <span className="font-semibold text-blue-700">Accessibility Service</span>
             </a>
 
             {/* Mobile Language Switcher */}
