@@ -21,12 +21,12 @@
     "twin": {
       "title": "Standard Twin Room",
       "description": "Comfortable room with all amenities for a pleasant stay",
-      "price": "from 1400 UAH/night"
+      "price": "from 1500 UAH/night"
     },
     "semiLuxury": {
       "title": "Family Junior Suite",
       "description": "Spacious two-room suite with additional amenities and a great view",
-      "price": "from 1700 UAH/night"
+      "price": "from 1800 UAH/night"
     },
     "amenities": {
       "twoPersons": "1-2 persons",
