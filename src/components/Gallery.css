@@ -1,0 +1,57 @@
+/* src/components/Gallery.css */
+.gallery-container .swiper-button-next,
+.gallery-container .swiper-button-prev {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.gallery-container .swiper-button-next:hover,
+.gallery-container .swiper-button-prev:hover {
+  transform: scale(1.1);
+}
+
+/* Стилі для пагінації */
+.swiper-pagination-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #6241f5;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+}
+
+/* Медіа-запит для мобільних пристроїв */
+@media (max-width: 768px) {
+  .gallery-container .swiper-button-next,
+  .gallery-container .swiper-button-prev {
+    display: none;
+  }
+
+  .swiper-pagination-custom {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 10px;
+    height: 10px;
+  }
+}

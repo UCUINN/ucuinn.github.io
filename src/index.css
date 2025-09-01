@@ -3,13 +3,89 @@
 @tailwind utilities;
 
 :root {
+  --primary-50: #f3f1fe;
+  --primary-100: #e9e4fd;
+  --primary-200: #d5ccfb;
+  --primary-300: #b7a7f7;
+  --primary-400: #9377f2;
+  --primary-500: #764aec;
+  --primary-600: #6241f5;
+  --primary-700: #4f1ed9;
+  --primary-800: #4219b5;
+  --primary-900: #381991;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
+  @apply text-gray-800 bg-white;
+  font-family: 'Inter', sans-serif;
   min-height: 100vh;
+  position: relative;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aspect-video,
+.aspect-portrait,
+.aspect-landscape {
+  position: relative;
+  overflow: hidden;
+}
+
+.aspect-video > *,
+.aspect-portrait > *,
+.aspect-landscape > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.swiper-pagination-bullet {
+  background-color: #d1d5db;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #1f2937;
 }

@@ -1,15 +1,200 @@
 {
-  "nav": {
-    "info": "Info",
-    "contacts": "Contacts",
-    "gallery": "Gallery",
-    "prices": "Prices",
-    "map": "Map",
-    "book": "Book"
+    "nav": {
+        "info": "Information",
+        "contacts": "Contacts",
+        "gallery": "Gallery",
+        "prices": "Prices",
+        "location": "Map",
+        "book": "Book a Room"
+    },
+    "hero": {
+        "title": "UCU INN",
+        "location": "You can find us in Collegium 2. The reception is located on the 1st floor on the parking lot side (Ivana Franka Street)",
+        "bookNow": "Book Now",
+        "viewRooms": "View Rooms",
+        "description": "UCU GUEST ROOMS",
+        "welcome": "Welcome to Lviv"
+    },
+    "rooms": {
+    "sectionTitle": "Our Rooms",
+    "bookNow": "Book Now",
+    "twin": {
+      "title": "Standard Twin Room",
+      "description": "Comfortable room with all amenities for a pleasant stay",
+      "price": "from 1400 UAH/night"
+    },
+    "semiLuxury": {
+      "title": "Family Junior Suite",
+      "description": "Spacious two-room suite with additional amenities and a great view",
+      "price": "from 1700 UAH/night"
+    },
+    "amenities": {
+      "twoPersons": "1-2 persons",
+      "fourPersons": "1-4 persons",
+      "wifi": "WiFi",
+      "bathroom": "Bathroom",
+      "breakfast": "Breakfast"
+    }
   },
-  "hero": {
-    "title": "UCU INN",
-    "location": "Located in Collegium 2, Kozelnytska Street, 2, Lviv",
-    "bookNow": "Book Now"
-  }
+    "gallery": {
+        "title": "Gallery",
+        "description": "UCU INN is a place where you can find the best of the best. We offer many interesting places to explore. You can discover the finest accommodations here.",
+        "reception": "Reception",
+        "waitingArea": "Guest waiting area at the reception",
+        "receptionDesk": "Reception Desk",
+        "twinRoom": "Twin Room with 2 separate beds",
+        "doubleRoom": "Twin Room with 1 large bed",
+        "suite1": "Family Junior Suite",
+        "suite2": "Family Junior Suite",
+        "suite3": "Family Junior Suite",
+        "bathroom": "Bathroom in each room",
+        "lounge": "Lounge area on the floor with an iron",
+        "morePhoto": "More photos here:"
+    },
+    "info": {
+        "findUs": "UCU Inn is waiting for you",
+        "description": {
+            "welcome": "Welcome to",
+            "location": "a comfortable guesthouse in a picturesque area of Lviv near Stryiskyi Park. Book in a way that's convenient for you and come for a stay. Check-in: after 14:00; Check-out: before 12:00. We also offer a safe shelter, fresh coffee, and aromatic tea at the reception.",
+            "whyChoose": "Why choose UCU Inn?",
+            "amenities": {
+                "title": "Guest amenities:",
+                "text": "All rooms are equipped with private bathrooms featuring showers, hairdryers, and free toiletries. Free Wi-Fi is available throughout the premises, and parking is provided for guest vehicles."
+            },
+            "comfort": {
+                "title": "Modern comfort:",
+                "text": "Thoughtful design, cozy rooms, and our attention to cleanliness create the perfect atmosphere for a pleasant stay."
+            },
+            "dining": {
+                "title": "UCU Cafeteria on-site:",
+                "text": "Delicious Ukrainian and European cuisine."
+            },
+            "activities": {
+                "title": "Hiking opportunities:",
+                "text": "Near the hotel, you will find great hiking trails, and proximity to the city center allows easy access to major attractions."
+            }
+        },
+        "location": {
+            "title": "Our address:",
+            "address": "Lviv, 79026, Kozelnytska St., 2",
+            "reception": "The reception is located on the 1st floor on the parking lot side (Ivana Franka Street)"
+        },
+        "contacts": {
+            "title": "Our Contacts",
+            "phone": "+38 096-75-67-206",
+            "extension": "ext. 35-12",
+            "email": "ucucenter@gmail.com",
+            "social": {
+                "facebook": "facebook.com/ucuinn.guestrooms",
+                "instagram": "instagram.com/guestroomsucu"
+            }
+        }
+    },
+    "university-centre": "908988",
+    "prices": {
+        "title": "Accommodation Prices",
+        "roomType": "Room Type",
+        "oneGuest": "1 guest",
+        "twoGuests": "2 guests",
+        "threeGuests": "3 guests",
+        "currency": "UAH",
+        "guestsCount": "Guests Count",
+        "pricePerNight": "Price per night (UAH)",
+        "roomTypes": {
+            "twin": {
+                "name": "Standard Double Room",
+                "namename": "Twin",
+                "oneGuest": "1 guest",
+                "twoGuests": "2 guests",
+                "priceOne": "1400",
+                "priceTwo": "1700"
+            },
+            "suite": {
+                "name": "Room",
+                "namename": "Family Junior Suite",
+                "oneGuest": "1 guest",
+                "twoGuests": "2 guests",
+                "threeGuests": "3 guests",
+                "priceOne": "1700",
+                "priceTwo": "2000",
+                "priceThree": "2300"
+            }
+        },
+        "additionalInfo": {
+            "breakfast": "Breakfast can be ordered additionally! 1 breakfast per person: ",
+            "amenities": "Rooms are equipped with everything you need for a comfortable stay. Each room has:",
+            "amenitiesdetailed": " a refrigerator, bathroom, hairdryer",
+            "wifi": "Free Wi-Fi is available throughout the campus:",
+            "wifiname": "[name: ucuguest]",
+            "bedTypes": "Rooms with two separate beds or one double bed are available. The Junior Suite has two rooms."
+        }
+    },
+    "additional": {
+        "bathroom": {
+            "alt": "Bathroom and hairdryer",
+            "description": "Each room has its own bathroom and a hairdryer"
+        },
+        "lounge": {
+            "alt": "Lounge area and iron",
+            "description": "Lounge area with an iron"
+        },
+        "award": {
+            "alt": "Traveller Review Awards 2024",
+            "title": "Traveller Review Awards 2024"
+        }
+    },
+    "booking": {
+        "title": "Book a Room",
+        "phone": {
+            "title": "Reminder: You can book a room by phone:",
+            "number": "+38 096-75-67-206",
+            "extension": "ext. 35-12"
+        },
+        "email": {
+            "title": "Via email",
+            "address": "ucucenter@gmail.com"
+        },
+        "social": {
+            "title": "Via messengers",
+            "viber": "Viber",
+            "whatsapp": "WhatsApp",
+            "telegram": "Telegram"
+        }
+    },
+    "social": {
+        "title": "We'd love to connect with you on social media, join us",
+        "regards": "Looking forward to meeting you!",
+        "team": "Best regards,",
+        "signature": "The UCU INN Team - UCU Guest Rooms💜"
+    },
+    "contact": {
+        "title": "Contacts",
+        "phone": "+38 096-75-67-206",
+        "extension": "ext. 35-12",
+        "email": "ucucenter@gmail.com",
+        "social": {
+            "facebook": "facebook.com/ucuinn.guestrooms",
+            "instagram": "instagram.com/guestroomsucu"
+        },
+        "address": {
+            "title": "Our Address:",
+            "street": "Kozelnytska St., 2",
+            "city": "Lviv",
+            "postcode": "79026",
+            "country": "Ukraine"
+        }
+    },
+    "reviews": {
+        "title": "Booking.com Reviews",
+        "subtitle": "Find out what our guests are saying",
+        "expand": "Expand",
+        "collapse": "Collapse",
+        "loading": {
+            "message": "Loading reviews...",
+            "note": "This may take a few seconds"
+        }
+    },
+    "footer": {
+        "copyright": "UCU INN — UCU Guest Rooms"
+    }
 }
