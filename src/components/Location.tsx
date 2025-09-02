@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { MapPin } from 'lucide-react';
+import entranceEn from '../img/entracy.webp';
+import entranceUa from '../img/entracy_ukr.webp';
 
 const Location = () => {
   const { t, i18n } = useTranslation();
   const entranceImage = i18n.language === 'en' 
-    ? "src/img/entracy.webp" 
-    : "src/img/entracy_ukr.webp";
+    ? entranceEn 
+    : entranceUa;
 
   return (
     <>
@@ -18,7 +20,9 @@ const Location = () => {
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <div className="aspect-video relative overflow-hidden rounded-xl  border-gray-100">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
+                  decoding="async"
                   src={entranceImage}
                   alt={t('info.findUs')}
                   className="w-full h-full object-cover"

@@ -2,6 +2,9 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import icoBackground from "../img/logo_en.svg";
+import rec12 from "../img/rec12pic.webp";
+import rec13 from "../img/rec13pic.webp";
+import bookingAward from "../img/booking-award.webp";
 
 const cardVariants = {
 	hidden: { opacity: 0, y: 50 },
@@ -40,8 +43,9 @@ const Additional = memo(() => {
 					<div className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-2xl">
 						<div className="aspect-[3/4] relative">
 							<img
-								src="src/img/rec12pic.webp"
+								src={rec12}
 								loading="lazy"
+								decoding="async"
 								alt={t("additional.bathroom.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>
@@ -66,8 +70,9 @@ const Additional = memo(() => {
 					>
 						<div className="relative">
 							<img
-								src="src/img/rec13pic.webp"
+								src={rec13}
 								loading="lazy"
+								decoding="async"
 								alt={t("additional.lounge.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>
@@ -91,8 +96,9 @@ const Additional = memo(() => {
 					>
 						<div className="relative">
 							<img
-								src="src/img/booking-award.webp"
+								src={bookingAward}
 								loading="lazy"
+								decoding="async"
 								alt={t("additional.award.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>

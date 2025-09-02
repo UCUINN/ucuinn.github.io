@@ -1,6 +1,17 @@
 // src/components/Gallery.tsx
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import rec3 from '../img/rec3pic.webp';
+import rec4 from '../img/rec4pic.webp';
+import rec5 from '../img/rec5pic.webp';
+import rec6 from '../img/rec6pic.webp';
+import rec7 from '../img/rec7pic.webp';
+import rec8 from '../img/rec8pic.webp';
+import rec9 from '../img/rec9pic.webp';
+import rec10 from '../img/rec10pic.webp';
+import rec11 from '../img/rec11pic.webp';
+import rec12 from '../img/rec12pic.webp';
+import rec13 from '../img/rec13pic.webp';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Keyboard, EffectFade, Autoplay } from 'swiper/modules';
@@ -28,18 +39,18 @@ function Gallery() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images: Image[] = [
-    { src: 'src/img/rec3pic.webp', caption: t('gallery.reception') },
-    { src: 'src/img/rec5pic.webp', caption: t('gallery.receptionDesk') },
-    { src: 'src/img/rec4pic.webp', caption: t('gallery.waitingArea') },
-    { src: 'src/img/rec9pic.webp', caption: t('gallery.doubleRoom') },
-    { src: 'src/img/rec6pic.webp', caption: t('gallery.twinRoom') },
-    { src: 'src/img/rec7pic.webp', caption: t('gallery.doubleRoom') },
-    { src: 'src/img/rec8pic.webp', caption: t('gallery.suite1') },
-    { src: 'src/img/rec9pic.webp', caption: t('gallery.suite2') },
-    { src: 'src/img/rec10pic.webp', caption: t('gallery.suite3') },
-    { src: 'src/img/rec11pic.webp', caption: t('gallery.suite3') },
-    { src: 'src/img/rec12pic.webp', caption: t('gallery.bathroom') },
-    { src: 'src/img/rec13pic.webp', caption: t('gallery.lounge') }
+    { src: rec3, caption: t('gallery.reception') },
+    { src: rec5, caption: t('gallery.receptionDesk') },
+    { src: rec4, caption: t('gallery.waitingArea') },
+    { src: rec9, caption: t('gallery.doubleRoom') },
+    { src: rec6, caption: t('gallery.twinRoom') },
+    { src: rec7, caption: t('gallery.doubleRoom') },
+    { src: rec8, caption: t('gallery.suite1') },
+    { src: rec9, caption: t('gallery.suite2') },
+    { src: rec10, caption: t('gallery.suite3') },
+    { src: rec11, caption: t('gallery.suite3') },
+    { src: rec12, caption: t('gallery.bathroom') },
+    { src: rec13, caption: t('gallery.lounge') }
   ];
 
   // Підготовка зображень для лайтбоксу
@@ -89,6 +100,7 @@ function Gallery() {
                         src={image.src}
                         alt={image.caption}
                         loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     </div>

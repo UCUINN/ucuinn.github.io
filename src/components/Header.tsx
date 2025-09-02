@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Phone, Accessibility } from 'lucide-react';
 import { cn } from '../utils/ui';
+import logoEn from '../img/logo_en.svg';
+import logoUa from '../img/logo_ua.svg';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -27,8 +29,8 @@ const Header = () => {
   ];
 
   const logoImage = i18n.language === 'en'
-    ? 'src/img/logo_en.svg'
-    : 'src/img/logo_ua.svg';
+    ? logoEn
+    : logoUa;
 
   return (
     <header className="bg-white/95 backdrop-blur-sm shadow-lg fixed top-0 left-0 w-full z-50 transition-all duration-300">
@@ -39,6 +41,7 @@ const Header = () => {
             <img
               src={logoImage}
               alt="UCU INN Logo"
+              decoding="async"
               className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
             />
           </a>

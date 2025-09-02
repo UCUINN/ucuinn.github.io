@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, ChevronDown } from "lucide-react";
 import { fadeInUpVariant, staggerContainer } from "../utils/ui";
+import heroBg from "../img/rec3pic.webp";
 
 export const Hero = () => {
 	const { t } = useTranslation();
@@ -22,12 +23,13 @@ export const Hero = () => {
 			>
 				<div className="relative w-full h-full">
 					<img
-						src="src/img/rec3pic.webp"
+						src={heroBg}
 						alt="UCU INN Background"
 						width={1920}
 						height={1080}
 						loading="eager"
 						decoding="async"
+						fetchPriority="high"
 						className="absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-all will-change-transform"
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />

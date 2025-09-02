@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Bed, Users, Wifi, Coffee } from 'lucide-react';
+import rec9 from '../img/rec9pic.webp';
+import rec11 from '../img/rec11pic.webp';
 
 const Room = () => {
   const { t } = useTranslation();
@@ -14,7 +16,8 @@ const Room = () => {
         "rooms.amenities.wifi",
         "rooms.amenities.bathroom"
       ],
-      image: "src/img/rec9pic.webp"
+      image: rec9
+
     },
     {
       titleKey: "rooms.semiLuxury.title",
@@ -25,7 +28,8 @@ const Room = () => {
         "rooms.amenities.wifi",
         "rooms.amenities.bathroom"
       ],
-      image: "src/img/rec11pic.webp"
+      image: rec11
+
     }
   ];
 
@@ -62,8 +66,11 @@ const Room = () => {
               <img
                 src={room.image}
                 alt={t(room.titleKey)}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-64 object-cover"
               />
+
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-2">
                   {t(room.titleKey)}
