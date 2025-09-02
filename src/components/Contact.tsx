@@ -127,8 +127,8 @@ const Contact = () => {
                 </SocialLink>
               </div>
             </ContactSection>
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <div className="flex items-start gap-3">
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg min-h-[100px] flex items-center">
+              <div className="flex items-center gap-3 w-full">
                 <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
                   <Accessibility className="w-5 h-5 text-blue-700" />
                 </div>
