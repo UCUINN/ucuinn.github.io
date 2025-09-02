@@ -25,6 +25,8 @@ const Location = () => {
                   decoding="async"
                   src={entranceImage}
                   alt={t('info.findUs')}
+                  width="800"
+                  height="600"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -77,13 +79,14 @@ const Location = () => {
           <div className="w-full aspect-video rounded-xl overflow-hidden border-4 border-gray-100">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5779.116598308234!2d24.021067014566256!3d49.81795401511609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae7f32dff0929%3A0xb5c40308a4d0d108!2z0JPQvtGB0YLRjNC-0LLRliDQutGW0LzQvdCw0YLQuCDQmtC-0LvQtdKR0ZbRg9C80YMg0KPQmtCj!5e0!3m2!1suk!2sua!4v1712334211072!5m2!1suk!2sua"
-              width="100%"
-              height="100%"
+              width="800"
+              height="600"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="UCU INN Location"
+              title="UCU INN Location Map"
+              aria-label={t('info.location.mapAriaLabel') || 'Map showing UCU INN location'}
               className="w-full h-full"
             />
           </div>

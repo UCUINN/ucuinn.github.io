@@ -75,7 +75,6 @@ function Gallery() {
               navigation
               pagination={{ 
                 clickable: true,
-                // Перемістити пагінацію нижче на мобільних
                 el: '.swiper-pagination-custom',
               }}
               keyboard={{ enabled: true }}
@@ -83,6 +82,7 @@ function Gallery() {
               autoplay={{
                 delay: 5000,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true
               }}
               className="h-full rounded-lg gallery-swiper gap-4 ml-2 gap-4 mr-2"
             >
@@ -101,6 +101,8 @@ function Gallery() {
                         alt={image.caption}
                         loading="lazy"
                         decoding="async"
+                        width="800"
+                        height="600"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     </div>

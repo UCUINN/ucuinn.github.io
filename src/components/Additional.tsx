@@ -46,6 +46,8 @@ const Additional = memo(() => {
 								src={rec12}
 								loading="lazy"
 								decoding="async"
+								width="600"
+								height="800"
 								alt={t("additional.bathroom.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>
@@ -73,6 +75,8 @@ const Additional = memo(() => {
 								src={rec13}
 								loading="lazy"
 								decoding="async"
+								width="800"
+								height="600"
 								alt={t("additional.lounge.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>
@@ -99,6 +103,8 @@ const Additional = memo(() => {
 								src={bookingAward}
 								loading="lazy"
 								decoding="async"
+								width="800"
+								height="600"
 								alt={t("additional.award.alt")}
 								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>

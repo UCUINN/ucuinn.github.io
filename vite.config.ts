@@ -1,33 +1,39 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-// ESM-compatible __dirname for TS
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   base: '/',
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          ['babel-plugin-transform-remove-console', { exclude: ['error', 'warn'] }]
+        ]
+      }
+    }),
     VitePWA({
       registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'robots.txt', 'img/*.png', 'img/*.svg'],
       manifest: {
-        name: 'UCU INN',
+        name: 'UCU INN - Guest Rooms',
         short_name: 'UCU INN',
+        description: 'Guest Rooms at Ukrainian Catholic University',
         theme_color: '#6241f5',
+        background_color: '#ffffff',
+        display: 'standalone',
         icons: [
           {
             src: '/android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+            purpose: 'any maskable'
           },
           {
             src: '/android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
+            purpose: 'any maskable'
           },
         ],
       },
@@ -82,10 +88,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@containers': path.resolve(__dirname, './src/containers'),
-      '@utils': path.resolve(__dirname, './src/utils'),
+      '@': './src',
+      '@components': './src/components',
+      '@containers': './src/containers',
+      '@utils': './src/utils',
     },
   },
   build: {
@@ -93,14 +99,30 @@ export default defineConfig({
     cssMinify: 'lightningcss',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: [
-            'react',
-            'react-dom',
-            'react-router-dom',
-            'i18next',
-            'react-i18next'
-          ],
+        manualChunks: (id) => {
+          // Create separate chunks for vendor libraries
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('scheduler')) {
+              return 'react-vendor';
+            }
+            if (id.includes('i18next')) {
+              return 'i18n-vendor';
+            }
+            return 'vendor'; // All other dependencies
+          }
+        },
+        // Optimize chunk naming for better caching
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name || '';
+          if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) {
+            return `assets/img/[name]-[hash][extname]`;
+          }
+          if (/\.(css)$/.test(name)) {
+            return `assets/css/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
         },
       },
     },

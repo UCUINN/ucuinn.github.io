@@ -68,6 +68,8 @@ const Room = () => {
                 alt={t(room.titleKey)}
                 loading="lazy"
                 decoding="async"
+                width="800"
+                height="600"
                 className="w-full h-64 object-cover"
               />
 
@@ -90,8 +92,14 @@ const Room = () => {
                   <span className="text-xl font-bold text-primary-600">
                     {t(room.priceKey)}
                   </span>
-                  <a href="https://booking-universitycentre.otelms.com/booking/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-all duration-300">
-                  ✓ {t('rooms.bookNow')}
+                  <a 
+                    href="https://booking-universitycentre.otelms.com/booking/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label={t('rooms.bookNow')} 
+                    className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  >
+                    <span aria-hidden="true">✓</span> {t('rooms.bookNow')}
                   </a>
                 </div>
               </div>
