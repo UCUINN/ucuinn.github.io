@@ -182,6 +182,10 @@
             "city": "Lviv",
             "postcode": "79026",
             "country": "Ukraine"
+        },
+        "extraService": {
+            "textBeforeLink": "If you need additional service, please fill out this",
+            "linkText": "form"
         }
     },
     "reviews": {

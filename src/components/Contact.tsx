@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Phone, Mail, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, Mail, Facebook, Instagram, MessageCircle, Accessibility } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { CONTACT_INFO, MESSENGER_LINKS } from '../config/contact';
 
@@ -127,6 +127,24 @@ const Contact = () => {
                 </SocialLink>
               </div>
             </ContactSection>
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <div className="flex items-start gap-3">
+                <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
+                  <Accessibility className="w-5 h-5 text-blue-700" />
+                </div>
+                <p className="text-gray-800">
+                  {t('contact.extraService.textBeforeLink')}{' '}
+                  <a
+                    href="https://forms.gle/c7hDcvf56s2G1eiQ7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 underline font-semibold"
+                  >
+                    {t('contact.extraService.linkText')}
+                  </a>.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
