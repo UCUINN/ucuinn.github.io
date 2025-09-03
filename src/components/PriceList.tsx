@@ -25,8 +25,8 @@ const PriceList = () => {
       type: "suite",
       prices: [
         { guests: t("prices.oneGuest"), amount: 1800 },
-        { guests: t("prices.twoGuests"), amount: 2200 },
-        { guests: t("prices.threeGuests"), amount: 2500 },
+        { guests: t("prices.twoGuests"), amount: 2100 },
+        { guests: t("prices.threeGuests"), amount: 2400 },
       ],
     },
   ];
