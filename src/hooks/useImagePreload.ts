@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { preloadImage, preloadImages, preloadImagesWithCallback } from '../utils/utils';
+import { preloadImage, preloadImagesWithCallback } from '../utils/utils';
 
 export function useImagePreload(src: string) {
   const [isLoaded, setIsLoaded] = useState(false);
