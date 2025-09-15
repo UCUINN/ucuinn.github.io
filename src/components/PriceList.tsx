@@ -1,8 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Info, Sparkles, Star } from "lucide-react";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { GlassCard } from "./ui";
+import { Info } from "lucide-react";
 
 interface RoomPriceInfo {
   type: string;
@@ -14,7 +12,6 @@ interface RoomPriceInfo {
 
 const PriceList = () => {
   const { t } = useTranslation();
-  const { ref, isVisible } = useScrollAnimation();
 
   const rooms: RoomPriceInfo[] = [
     {
@@ -35,55 +32,33 @@ const PriceList = () => {
   ];
 
   return (
-    <section id="prices" className="py-20 px-4 bg-gradient-to-br from-indigo-50 via-white to-cyan-50 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="floating absolute top-16 right-20 w-24 h-24 gradient-neon rounded-full blur-xl"></div>
-        <div className="floating absolute bottom-16 left-20 w-20 h-20 gradient-warm rounded-full blur-xl" style={{animationDelay: '3s'}}></div>
-      </div>
+    <section id="prices" className="py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold text-primary-600 mb-6">
+          {t("prices.title")}
+        </h2>
 
-      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
-        <div className={`text-center mb-12 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-8 h-8 text-yellow-500" />
-            <h2 className="text-5xl font-bold text-gradient">
-              {t("prices.title")}
-            </h2>
-            <Sparkles className="w-8 h-8 text-yellow-500" />
-          </div>
-          <div className="w-32 h-1 gradient-accent mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Experience luxury at competitive rates</p>
-        </div>
-
-        <GlassCard className={`rounded-2xl shadow-large border border-white/30 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className="bg-[#fafaf2] rounded-lg shadow-md">
           {/* Mobile version */}
           <div className="block md:hidden">
             {rooms.map((room) => (
-              <div key={room.type} className="p-6 border-b border-white/20 last:border-b-0">
-                <div className="flex items-center gap-2 mb-3">
-                  <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                  <div className="font-semibold text-xl text-gradient">
-                    {t(`prices.roomTypes.${room.type}.name`)}
-                  </div>
+              <div key={room.type} className="p-4 border-b">
+                <div className="font-medium text-lg mb-3 text-primary-600">
+                  {t(`prices.roomTypes.${room.type}.name`)}
                 </div>
-                <div className="font-bold text-lg mb-4 text-gray-700">
+                <div className="font-bold text-lg mb-3 text-primary-600">
                   {t(`prices.roomTypes.${room.type}.namename`)}
                 </div>
                 <div className="space-y-2">
                   {room.prices.map((price, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center p-3 glass-card rounded-lg hover:shadow-medium transition-all duration-300"
+                      className="flex justify-between items-center"
                     >
-                      <span className="text-gray-700 font-medium">{price.guests}</span>
-                      <div className="text-right">
-                        <span className="font-bold text-xl text-gradient">
-                          {price.amount}
-                        </span>
-                        <span className="text-gray-600 ml-1 text-sm">
-                          {t("prices.currency")}
-                        </span>
-                      </div>
+                      <span className="text-gray-700">{price.guests}</span>
+                      <span className="font-medium">
+                        {price.amount} {t("prices.currency")}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -96,16 +71,13 @@ const PriceList = () => {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <th className="gradient-accent text-white p-6 text-center rounded-tl-xl border-0 w-1/2">
-                    <div className="flex items-center justify-center gap-2">
-                      <Star className="w-5 h-5" />
-                      {t("prices.roomType")}
-                    </div>
+                  <th className="bg-primary-600 text-white p-4 text-center border border-primary-600 w-1/2">
+                    {t("prices.roomType")}
                   </th>
-                  <th className="gradient-accent text-white p-6 text-center border-0 w-1/4">
+                  <th className="bg-primary-600 text-white p-4 text-center border border-primary-600 w-1/4">
                     {t("prices.guestsCount")}
                   </th>
-                  <th className="gradient-accent text-white p-6 text-center rounded-tr-xl border-0 w-1/4">
+                  <th className="bg-primary-600 text-white p-4 text-center border border-primary-600 w-1/4">
                     {t("prices.pricePerNight")}
                   </th>
                 </tr>
@@ -174,18 +146,14 @@ const PriceList = () => {
           </div>
         </div>
 
-        <div className={`mt-12 text-center transform transition-all duration-700 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className="mt-8 text-center">
           <a
-            href="https://booking-universitycentre.otelms.com/booking/rooms/"
-            target="_blank"
-            className="interactive-button gradient-accent text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-large hover:shadow-neon transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-3"
+            href="https://booking-universitycentre.otelms.com/booking/rooms/" target="_blank"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary-600 hover:bg-primary-700 transition-colors"
           >
-            <Sparkles className="w-5 h-5" />
             {t("booking.title")}
-            <Sparkles className="w-5 h-5" />
           </a>
         </div>
-        </GlassCard>
       </div>
     </section>
   );

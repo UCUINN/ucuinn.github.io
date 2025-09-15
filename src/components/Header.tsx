@@ -34,7 +34,7 @@ const Header = () => {
     : logoUa;
 
   return (
-    <header className="glass-card fixed top-0 left-0 w-full z-50 transition-all duration-300 border-0 shadow-soft">
+    <header className="bg-white/95 backdrop-blur-sm shadow-lg fixed top-0 left-0 w-full z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <nav className="flex justify-between items-center py-3">
           {/* Logo */}
@@ -56,10 +56,10 @@ const Header = () => {
                 target={item.target}
                 rel={item.rel}
                 className={cn(
-                  'px-3 lg:px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300',
+                  'px-3 lg:px-4 py-2 text-gray-700 text-sm font-medium rounded-lg transition-all duration-300',
                   item.isHighlighted
-                    ? 'gradient-accent text-white hover:shadow-neon transform hover:-translate-y-1 interactive-button'
-                    : 'text-gray-700 hover:text-primary-600 glass-card hover:bg-white/20 scale-on-hover'
+                    ? 'bg-primary-600 text-white hover:bg-primary-700 hover:shadow-md transform hover:-translate-y-0.5'
+                    : 'hover:text-primary-600 hover:bg-primary-50'
                 )}
               >
                 {item.label}
@@ -70,14 +70,14 @@ const Header = () => {
           {/* Desktop Language & Phone */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
             {/* Language Switcher */}
-            <div className="flex items-center space-x-2 glass-card p-1 rounded-xl">
+            <div className="flex items-center space-x-2 bg-gray-50 p-1 rounded-lg">
               <button
                 onClick={() => changeLanguage('en')}
                 className={cn(
-                  'px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-300 scale-on-hover',
+                  'px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300',
                   i18n.language === 'en'
-                    ? 'gradient-accent text-white shadow-neon'
-                    : 'text-gray-600 hover:text-gray-900 hover:glass-card'
+                    ? 'bg-white text-primary-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
                 )}
               >
                 🇺🇸 EN
@@ -85,10 +85,10 @@ const Header = () => {
               <button
                 onClick={() => changeLanguage('ua')}
                 className={cn(
-                  'px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-300 scale-on-hover',
+                  'px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300',
                   i18n.language === 'ua'
-                    ? 'gradient-accent text-white shadow-neon'
-                    : 'text-gray-600 hover:text-gray-900 hover:glass-card'
+                    ? 'bg-white text-primary-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
                 )}
               >
                 🇺🇦 UA
@@ -98,10 +98,10 @@ const Header = () => {
             {/* Contact Phone */}
             <a
               href="tel:+380967567206"
-              className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-all duration-300 lift-on-hover group"
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-105"
             >
-              <div className="gradient-accent p-3 rounded-full group-hover:pulse-glow">
-                <Phone className="w-4 h-4 text-white" />
+              <div className="bg-primary-50 p-2 rounded-full">
+                <Phone className="w-4 h-4" />
               </div>
               <span className="text-sm font-medium">096-75-67-206</span>
             </a>
