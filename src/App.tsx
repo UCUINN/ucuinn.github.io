@@ -13,6 +13,7 @@ const Footer = lazy(() => import('./components/Footer'));
 
 import ErrorBoundary from './components/ErrorBoundary';
 import { usePreventScroll } from './hooks/usePreventScroll';
+import { GallerySkeleton, RoomSkeleton, PriceListSkeleton } from './components/skeletons';
 import './index.css'
 
 const LoadingSpinner = () => (
@@ -36,16 +37,22 @@ const App = () => {
             <Hero />
           </ErrorBoundary>
           <ErrorBoundary>
-            <Room />
+            <Suspense fallback={<RoomSkeleton />}>
+              <Room />
+            </Suspense>
           </ErrorBoundary>
           <ErrorBoundary>
             <Location />
           </ErrorBoundary>
           <ErrorBoundary>
-            <Gallery />
+            <Suspense fallback={<GallerySkeleton />}>
+              <Gallery />
+            </Suspense>
           </ErrorBoundary>
           <ErrorBoundary>
-            <PriceList />
+            <Suspense fallback={<PriceListSkeleton />}>
+              <PriceList />
+            </Suspense>
           </ErrorBoundary>
           <ErrorBoundary>
             <Additional />
