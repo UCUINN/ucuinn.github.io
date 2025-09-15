@@ -1,0 +1,156 @@
+{
+  "ua": [
+    {
+      "q": "Чи є укриття? 🛡️",
+      "a": "Так. На нульовому поверсі облаштоване надійне укриття зі світлом, Wi-Fi та питною водою.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Чи маєте генератор? ⚡",
+      "a": "Так. Генератор забезпечує безперебійний інтернет та роботу ліфта навіть під час відключень.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Яка ціна проживання? 💵",
+      "a": "1500 грн за одного гостя або 1800 грн за двох. Сніданок у вартість не входить.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Чи можна заїхати раніше? 🛎",
+      "a": "Так, доступний ранній заїзд. Додатково оплачується половина добової вартості.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Чи прибирають щодня? 🧹",
+      "a": "Прибирання, заміна білизни чи рушників — на запит через рецепцію. Ми не заходимо без вашого дозволу.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Які години заїзду та виїзду? 🕒",
+      "a": "Заїзд після 14:00. Виїзд до 12:00.",
+      "category": "house_rules"
+    },
+    {
+      "q": "Чи є телевізор у кімнатах? 📺",
+      "a": "Ні. Ми створили простір для тиші та відпочинку. Натомість у вас буде швидкий Wi-Fi.",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "Що передбачено в кімнаті? 🔑",
+      "a": "Власний санвузол, холодильник і фен — у кожній кімнаті.",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "Чи можна з тваринами? 🐾",
+      "a": "Ми дуже любимо котів, собак та інших домашніх улюбленців, але, на жаль, розміщення з ними не передбачене.",
+      "category": "house_rules"
+    },
+    {
+      "q": "Чи входить сніданок? 🍽️",
+      "a": "Сніданок можна замовити додатково: 300 грн/особа.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Де можна смачно поїсти поруч? 🍽️",
+      "a": "Поруч є Трапезна та кілька кафе, де можна смачно пообідати з 8:00 до 20:00. На рецепції вам також залюбки підкажуть інші хороші варіанти.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Чи є басейн? 🏊‍♂️",
+      "a": "Ні, басейну немає (але ми теж були б раді такій опції 🙂).",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "Чи є парковка? 🚗",
+      "a": "Так, для гостей доступна безкоштовна парковка.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Чи є спортзал? 🏋️‍♂️",
+      "a": "Так, працює сучасний тренажерний зал. Деталі та графік можна дізнатися на рецепції або у тренера у спортзалі.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Чи можна забронювати конференц-зал? 💼",
+      "a": "Так, доступні конференц-зали з усім необхідним обладнанням.\nДеталі: guests.ucu.edu.ua/en/zaly/\nАбо: +380 63 265 93 92 (Богдан), conference@ucu.edu.ua",
+      "category": "onsite_services"
+    }
+  ],
+  "en": [
+    {
+      "q": "Is there a shelter? 🛡️",
+      "a": "Yes. A reliable shelter with lighting, Wi-Fi, and drinking water is located on the ground floor.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Do you have a generator? ⚡",
+      "a": "Yes. The generator ensures stable internet and elevator operation during outages.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "What’s the room price? 💵",
+      "a": "1500 UAH for one guest or 1800 UAH for two. Breakfast is not included.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Is early check-in possible? 🛎",
+      "a": "Yes. Early check-in is available for an additional half-day charge.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Do you provide daily cleaning? 🧹",
+      "a": "On request — cleaning or linen/towel change can be booked at reception. We respect your privacy.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Check-in and check-out time? 🕒",
+      "a": "Check-in after 14:00. Check-out by 12:00.",
+      "category": "house_rules"
+    },
+    {
+      "q": "Is there a TV in the rooms? 📺",
+      "a": "No. Our rooms are designed for peace and quiet. Fast Wi-Fi is provided instead.",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "What’s included in the rooms? 🔑",
+      "a": "Each room has a private bathroom, a fridge, and a hairdryer.",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "Are pets allowed? 🐾",
+      "a": "We love cats, dogs, and other pets, but unfortunately, they are not allowed.",
+      "category": "house_rules"
+    },
+    {
+      "q": "Is breakfast included? 🍽️",
+      "a": "Breakfast is available for 300 UAH per person.",
+      "category": "booking_payment"
+    },
+    {
+      "q": "Where can we eat nearby? 🍽️",
+      "a": "Nearby you’ll find the Trapezna cafeteria and several cafes open from 8:00 to 20:00. Reception will gladly suggest more tasty options.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Do you have a pool? 🏊‍♂️",
+      "a": "No, there’s no pool (though we’d love to have one too 🙂).",
+      "category": "rooms_amenities"
+    },
+    {
+      "q": "Is parking available? 🚗",
+      "a": "Yes, free parking is available for all guests.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Is there a gym? 🏋️‍♂️",
+      "a": "Yes, we have a modern gym. Please check with reception or the gym trainer for hours and conditions.",
+      "category": "onsite_services"
+    },
+    {
+      "q": "Do you provide conference facilities? 💼",
+      "a": "Yes, fully equipped conference halls are available.\nMore info: guests.ucu.edu.ua/en/zaly/\nOr call +380 63 265 93 92 (Bohdan), Email: conference@ucu.edu.ua",
+      "category": "onsite_services"
+    }
+  ]
+}

@@ -5,6 +5,7 @@
         "gallery": "Gallery",
         "prices": "Prices",
         "location": "Map",
+        "faq": "FAQ",
         "book": "Book a Room"
     },
     "hero": {
@@ -196,6 +197,20 @@
         "loading": {
             "message": "Loading reviews...",
             "note": "This may take a few seconds"
+        }
+    },
+    "faq": {
+        "title": "F.A.Q",
+        "subtitle": "Answers to common questions about UCU INN",
+        "note": "Didn’t find an answer? Contact us — we’re happy to help.",
+        "searchLabel": "Search FAQ",
+        "searchPlaceholder": "Type to filter questions...",
+        "noResults": "No results. Try another query.",
+        "categories": {
+            "booking_payment": "Booking & Payment",
+            "rooms_amenities": "Rooms & Amenities",
+            "onsite_services": "On-site Services",
+            "house_rules": "House Rules"
         }
     },
     "footer": {

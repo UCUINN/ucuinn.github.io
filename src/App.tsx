@@ -6,6 +6,7 @@ const Gallery = lazy(() => import('./components/Gallery'));
 const Room = lazy(() => import('./components/Room'));
 const PriceList = lazy(() => import('./components/PriceList'));
 const Additional = lazy(() => import('./components/Additional'));
+const FAQ = lazy(() => import('./components/FAQ'));
 const Booking = lazy(() => import('./components/Booking'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
@@ -48,6 +49,9 @@ const App = () => {
           </ErrorBoundary>
           <ErrorBoundary>
             <Additional />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <FAQ />
           </ErrorBoundary>
           <ErrorBoundary>
             <Booking />

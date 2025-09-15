@@ -19,6 +19,7 @@ const Header = () => {
     { href: '#gallery', label: t('nav.gallery') },
     { href: '#prices', label: t('nav.prices') },
     { href: '#location', label: t('nav.location') },
+    { href: '#faq', label: t('nav.faq') },
     {
       href: 'https://booking-universitycentre.otelms.com/booking/rooms/',
       target: '_blank',
