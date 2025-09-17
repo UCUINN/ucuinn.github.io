@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin } from 'lucide-react';
 import entranceEn from '../img/entracy.webp';
@@ -5,9 +6,51 @@ import entranceUa from '../img/entracy_ukr.webp';
 
 const Location = () => {
   const { t, i18n } = useTranslation();
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const isMountedRef = useRef(true);
   const entranceImage = i18n.language === 'en' 
     ? entranceEn 
     : entranceUa;
+
+  useEffect(() => {
+    const container = mapContainerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoadMap(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoadMap(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  const handleLoadMap = () => {
+    if (!isMountedRef.current) {
+      return;
+    }
+    setShouldLoadMap(true);
+  };
 
   return (
     <>
@@ -77,18 +120,35 @@ const Location = () => {
           </div>
 
           <div className="w-full aspect-video rounded-xl overflow-hidden border-4 border-gray-100">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5779.116598308234!2d24.021067014566256!3d49.81795401511609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae7f32dff0929%3A0xb5c40308a4d0d108!2z0JPQvtGB0YLRjNC-0LLRliDQutGW0LzQvdCw0YLQuCDQmtC-0LvQtdKR0ZbRg9C80YMg0KPQmtCj!5e0!3m2!1suk!2sua!4v1712334211072!5m2!1suk!2sua"
-              width="800"
-              height="600"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="UCU INN Location Map"
-              aria-label={t('info.location.mapAriaLabel') || 'Map showing UCU INN location'}
-              className="w-full h-full"
-            />
+            <div ref={mapContainerRef} className="w-full h-full" aria-live="polite">
+              {shouldLoadMap ? (
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5779.116598308234!2d24.021067014566256!3d49.81795401511609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae7f32dff0929%3A0xb5c40308a4d0d108!2z0JPQvtGB0YLRjNC-0LLRliDQutGW0LzQvdCw0YLQuCDQmtC-0LvQtdKR0ZbRg9C80YMg0KPQmtCj!5e0!3m2!1suk!2sua!4v1712334211072!5m2!1suk!2sua"
+                  width="800"
+                  height="600"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="UCU INN Location Map"
+                  aria-label={t('info.location.mapAriaLabel') || 'Map showing UCU INN location'}
+                  className="w-full h-full"
+                />
+              ) : (
+                <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-white/80 px-6 text-center">
+                  <p className="text-sm text-gray-600">
+                    {t('info.location.mapPlaceholder')}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleLoadMap}
+                    className="inline-flex items-center justify-center rounded-full bg-primary-600 px-5 py-2 text-sm font-semibold text-white shadow-md transition-colors hover:bg-primary-700"
+                  >
+                    {t('info.location.mapCta')}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>

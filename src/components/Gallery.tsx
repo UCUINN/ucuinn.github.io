@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { useTranslation } from "react-i18next";
 import { ImagePlus } from "lucide-react";
 import rec3 from "../img/rec3pic.webp";
@@ -21,12 +21,6 @@ import {
   EffectFade,
   Autoplay,
 } from "swiper/modules";
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Captions from "yet-another-react-lightbox/plugins/captions";
-
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/captions.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -42,6 +36,20 @@ function Gallery() {
   const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxBundle, setLightboxBundle] = useState<{
+    Lightbox: ComponentType<any>;
+    plugins: unknown[];
+  } | null>(null);
+  const [isLoadingLightbox, setIsLoadingLightbox] = useState(false);
+  const lightboxRef = useRef<{
+    Lightbox: ComponentType<any>;
+    plugins: unknown[];
+  } | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => () => {
+    isMountedRef.current = false;
+  }, []);
 
   const images: ImageItem[] = [
     { src: rec3, caption: t("gallery.reception") },
@@ -62,6 +70,55 @@ function Gallery() {
     src: image.src,
     description: image.caption,
   }));
+
+  const loadLightbox = useCallback(async () => {
+    if (lightboxRef.current || isLoadingLightbox) {
+      return lightboxRef.current;
+    }
+
+    setIsLoadingLightbox(true);
+    try {
+      await Promise.all([
+        import("yet-another-react-lightbox/styles.css"),
+        import("yet-another-react-lightbox/plugins/captions.css"),
+      ]);
+
+      const [lightboxModule, zoomModule, captionsModule] = await Promise.all([
+        import("yet-another-react-lightbox"),
+        import("yet-another-react-lightbox/plugins/zoom"),
+        import("yet-another-react-lightbox/plugins/captions"),
+      ]);
+
+      const bundle = {
+        Lightbox: lightboxModule.default,
+        plugins: [zoomModule.default, captionsModule.default],
+      };
+      lightboxRef.current = bundle;
+      if (isMountedRef.current) {
+        setLightboxBundle(bundle);
+      }
+      return bundle;
+    } catch (error) {
+      console.error("Failed to load lightbox", error);
+      return null;
+    } finally {
+      if (isMountedRef.current) {
+        setIsLoadingLightbox(false);
+      }
+    }
+  }, [isLoadingLightbox]);
+
+  const handleOpenLightbox = useCallback(
+    async (index: number) => {
+      setCurrentImageIndex(index);
+      const bundle = await loadLightbox();
+      if (bundle && isMountedRef.current) {
+        setLightboxBundle(bundle);
+        setLightboxOpen(true);
+      }
+    },
+    [loadLightbox]
+  );
 
   return (
     <section
@@ -106,10 +163,7 @@ function Gallery() {
                   <button
                     type="button"
                     className="group relative h-full w-full cursor-zoom-in"
-                    onClick={() => {
-                      setCurrentImageIndex(index);
-                      setLightboxOpen(true);
-                    }}
+                    onClick={() => handleOpenLightbox(index)}
                   >
                     <span className="sr-only">{t("gallery.title")}</span>
                     <div className="relative h-full w-full">
@@ -149,20 +203,22 @@ function Gallery() {
         </div>
       </div>
 
-      <Lightbox
-        open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
-        index={currentImageIndex}
-        slides={slides}
-        plugins={[Zoom, Captions]}
-        carousel={{ finite: true }}
-        animation={{ swipe: 250 }}
-        zoom={{ maxZoomPixelRatio: 3, zoomInMultiplier: 2 }}
-        render={{
-          buttonPrev: images.length <= 1 ? () => null : undefined,
-          buttonNext: images.length <= 1 ? () => null : undefined,
-        }}
-      />
+      {lightboxBundle?.Lightbox ? (
+        <lightboxBundle.Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          index={currentImageIndex}
+          slides={slides}
+          plugins={lightboxBundle.plugins}
+          carousel={{ finite: true }}
+          animation={{ swipe: 250 }}
+          zoom={{ maxZoomPixelRatio: 3, zoomInMultiplier: 2 }}
+          render={{
+            buttonPrev: images.length <= 1 ? () => null : undefined,
+            buttonNext: images.length <= 1 ? () => null : undefined,
+          }}
+        />
+      ) : null}
     </section>
   );
 }

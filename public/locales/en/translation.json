@@ -78,7 +78,9 @@
         "location": {
             "title": "Our address:",
             "address": "Lviv, 79026, Kozelnytska St., 2",
-            "reception": "The reception is located on the 1st floor on the parking lot side (Ivana Franka Street)"
+            "reception": "The reception is located on the 1st floor on the parking lot side (Ivana Franka Street)",
+            "mapPlaceholder": "Interactive map loads on demand to save data. Load it when you're ready.",
+            "mapCta": "Load map now"
         },
         "contacts": {
             "title": "Our Contacts",

@@ -1,74 +1,136 @@
-import { Suspense, useLayoutEffect, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import Header from './components/Header';
-const Hero = lazy(() => import('./components/Hero'));
+import Hero from './components/Hero';
+import Room from './components/Room';
 import Location from './components/Location';
+import Footer from './components/Footer';
+import LazySection from './components/LazySection';
 const Gallery = lazy(() => import('./components/Gallery'));
-const Room = lazy(() => import('./components/Room'));
 const PriceList = lazy(() => import('./components/PriceList'));
 const Additional = lazy(() => import('./components/Additional'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Booking = lazy(() => import('./components/Booking'));
 const Contact = lazy(() => import('./components/Contact'));
-const Footer = lazy(() => import('./components/Footer'));
 
 import ErrorBoundary from './components/ErrorBoundary';
-import { usePreventScroll } from './hooks/usePreventScroll';
-import { GallerySkeleton, RoomSkeleton, PriceListSkeleton } from './components/skeletons';
-import './index.css'
+import { GallerySkeleton, PriceListSkeleton } from './components/skeletons';
+import './index.css';
 
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600" />
-  </div>
+const SectionFallback = ({ label }: { label: string }) => (
+  <section aria-label={label} className="py-20">
+    <div className="mx-auto max-w-7xl px-4">
+      <div className="h-60 w-full animate-pulse rounded-3xl bg-gray-100" />
+    </div>
+  </section>
 );
 
+type IdleWindow = Window & {
+  requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
+
 const App = () => {
-  usePreventScroll();
-  useLayoutEffect(() => {
-    // Add effect logic here if needed
-  }, []); // Added empty dependency array
+  useEffect(() => {
+    const loaders = [
+      () => import('./components/Gallery'),
+      () => import('./components/PriceList'),
+      () => import('./components/Additional'),
+      () => import('./components/FAQ'),
+      () => import('./components/Booking'),
+      () => import('./components/Contact'),
+    ];
+
+    const runPrefetch = () => {
+      loaders.forEach((load) => {
+        void load();
+      });
+    };
+
+    const browserWindow: IdleWindow | undefined =
+      typeof window !== 'undefined' ? (window as IdleWindow) : undefined;
+
+    if (!browserWindow) {
+      return undefined;
+    }
+
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if (typeof browserWindow.requestIdleCallback === 'function') {
+      idleId = browserWindow.requestIdleCallback(() => {
+        runPrefetch();
+      }, { timeout: 3000 });
+    } else {
+      timeoutId = setTimeout(runPrefetch, 1500);
+    }
+
+    return () => {
+      if (typeof idleId === 'number' && typeof browserWindow.cancelIdleCallback === 'function') {
+        browserWindow.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<LoadingSpinner />}>
-        <Header />
-        <main className="min-h-screen pt-16">
-          <ErrorBoundary>
-            <Hero />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <Suspense fallback={<RoomSkeleton />}>
-              <Room />
-            </Suspense>
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <Location />
-          </ErrorBoundary>
-          <ErrorBoundary>
+      <Header />
+      <main className="min-h-screen pt-16">
+        <ErrorBoundary>
+          <Hero />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Room />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Location />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection id="gallery" fallback={<GallerySkeleton />}>
             <Suspense fallback={<GallerySkeleton />}>
               <Gallery />
             </Suspense>
-          </ErrorBoundary>
-          <ErrorBoundary>
+          </LazySection>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection id="prices" fallback={<PriceListSkeleton />}>
             <Suspense fallback={<PriceListSkeleton />}>
               <PriceList />
             </Suspense>
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <Additional />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <FAQ />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <Booking />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <Contact />
-          </ErrorBoundary>
-        </main>
-        <Footer />
-      </Suspense>
+          </LazySection>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection id="additional" fallback={<SectionFallback label="Additional amenities loading" />}>
+            <Suspense fallback={<SectionFallback label="Additional amenities loading" />}>
+              <Additional />
+            </Suspense>
+          </LazySection>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection id="faq" fallback={<SectionFallback label="FAQ loading" />}>
+            <Suspense fallback={<SectionFallback label="FAQ loading" />}>
+              <FAQ />
+            </Suspense>
+          </LazySection>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection fallback={<SectionFallback label="Booking widget loading" />}>
+            <Suspense fallback={<SectionFallback label="Booking widget loading" />}>
+              <Booking />
+            </Suspense>
+          </LazySection>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LazySection id="contacts" fallback={<SectionFallback label="Contact information loading" />}>
+            <Suspense fallback={<SectionFallback label="Contact information loading" />}>
+              <Contact />
+            </Suspense>
+          </LazySection>
+        </ErrorBoundary>
+      </main>
+      <Footer />
     </ErrorBoundary>
   );
 };

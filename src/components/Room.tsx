@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import {
   ArrowUpRight,
   Bed,
-  Coffee,
   Users,
   Wifi,
   type LucideIcon,
