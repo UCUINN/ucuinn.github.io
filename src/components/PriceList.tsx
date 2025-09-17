@@ -110,7 +110,7 @@ const PriceList = () => {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:gap-8 lg:grid-cols-2 auto-rows-fr">
           {rooms.map((room) => {
             const accentLabel = t(`prices.roomTypes.${room.type}.namename`);
             const title = t(`rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.title`);
@@ -131,39 +131,41 @@ const PriceList = () => {
                 <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-300/20 blur-3xl" />
                 <div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-200/20 blur-3xl" />
 
-                <div className="relative z-10 flex h-full flex-col p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600">
+                <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
                         {accentLabel}
                       </div>
-                      <h3 className="mt-4 text-2xl font-semibold text-gray-900">
+                      <h3 className="mt-3 text-2xl font-semibold text-gray-900">
                         {title}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-600">{description}</p>
+                      <p className="mt-1.5 text-sm text-gray-600 sm:h-10 line-clamp-2">{description}</p>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs uppercase tracking-wider text-gray-400">
+                    <div className="text-center sm:text-right bg-primary-50/70 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
+                      <span className="text-xs uppercase tracking-wider text-gray-500 block">
                         {t("prices.pricePerNight")}
                       </span>
-                      <p className="mt-2 text-lg font-semibold text-primary-600">
+                      <p className="text-lg font-semibold text-primary-700">
                         {basePrice}
                       </p>
                     </div>
                   </div>
 
-                  <dl className="mt-6 space-y-3">
+                  <dl className="mt-6 space-y-2.5">
                     {room.prices.map((price) => (
                       <div
                         key={`${room.type}-${price.guests}`}
-                        className="flex items-center justify-between rounded-2xl border border-primary-100 bg-white/70 px-4 py-3 shadow-sm"
+                        className="flex items-center justify-between rounded-xl border border-primary-100/80 bg-white/80 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-colors"
                       >
-                        <dt className="text-sm font-medium text-gray-600">
+                        <dt className="text-sm font-medium text-gray-700">
                           {price.guests}
                         </dt>
-                        <dd className="text-2xl font-semibold text-primary-700">
-                          {formatAmount.format(price.amount)}
-                          <span className="ml-1 text-sm font-medium text-gray-500">
+                        <dd className="flex items-baseline">
+                          <span className="text-lg sm:text-xl font-semibold text-primary-700">
+                            {formatAmount.format(price.amount)}
+                          </span>
+                          <span className="ml-1 text-xs font-medium text-gray-500 self-start mt-1">
                             {t("prices.currency")}
                           </span>
                         </dd>
@@ -171,27 +173,27 @@ const PriceList = () => {
                     ))}
                   </dl>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap gap-2 min-h-[32px]">
                     {room.amenities.map((amenityKey) => {
                       const Icon = amenityIconMap[amenityKey];
                       return (
                         <span
                           key={amenityKey}
-                          className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-medium text-primary-700"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-medium text-primary-700 border border-primary-100/50 shadow-sm"
                         >
-                          {Icon ? <Icon className="h-4 w-4" aria-hidden="true" /> : null}
+                          {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
                           {t(amenityKey)}
                         </span>
                       );
                     })}
                   </div>
 
-                  <div className="mt-8">
+                  <div className="mt-auto pt-6 text-center">
                     <a
                       href="https://booking-universitycentre.otelms.com/booking/rooms/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-700 hover:shadow-lg"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:max-w-[180px]"
                     >
                       {t("rooms.bookNow")}
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
