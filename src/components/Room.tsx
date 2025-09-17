@@ -114,8 +114,8 @@ const Room = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-primary-100 bg-white/70 px-6 py-4 shadow-sm min-h-[90px]">
-                  <div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-primary-100 bg-white/70 px-6 py-4 shadow-sm">
+                  <div className="text-center sm:text-left">
                     <span className="text-xs uppercase tracking-wider text-gray-400">
                       {t("prices.pricePerNight")}
                     </span>
@@ -127,22 +127,22 @@ const Room = () => {
                     href="https://booking-universitycentre.otelms.com/booking/rooms/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-700 hover:shadow-lg"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-600 bg-transparent px-5 py-2 text-sm font-semibold text-primary-600 transition-all hover:bg-primary-600 hover:text-white hover:shadow-md w-full sm:w-auto mt-2 sm:mt-0"
                   >
                     {t("rooms.bookNow")}
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </div>
 
-                <div className="flex flex-wrap gap-3 min-h-[50px]">
+                <div className="flex flex-wrap gap-4 mt-4">
                   {room.amenities.map((amenityKey) => {
                     const Icon = amenityIconMap[amenityKey];
                     return (
                       <span
                         key={amenityKey}
-                        className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-xs font-semibold text-primary-700 shadow-sm"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1.5 text-xs font-medium text-primary-700 border border-primary-100/50 shadow-sm"
                       >
-                        {Icon ? <Icon className="h-4 w-4" aria-hidden="true" /> : null}
+                        {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
                         {t(amenityKey)}
                       </span>
                     );

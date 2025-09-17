@@ -131,16 +131,18 @@ const PriceList = () => {
                 <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-300/20 blur-3xl" />
                 <div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-200/20 blur-3xl" />
 
-                <div className="relative z-10 flex h-full flex-col p-4 sm:p-6 lg:p-8">
-                  <div className="flex flex-col gap-3">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm w-fit">
-                      {accentLabel}
+                <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
+                        {accentLabel}
+                      </div>
+                      <h3 className="mt-3 text-2xl font-semibold text-gray-900">
+                        {title}
+                      </h3>
+                      <p className="mt-1.5 text-sm text-gray-600 sm:h-10 line-clamp-2">{description}</p>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight">
-                      {title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
-                    <div className="text-center bg-primary-50/70 rounded-lg px-3 py-2 shadow-sm mt-2">
+                    <div className="text-center sm:text-right bg-primary-50/70 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
                       <span className="text-xs uppercase tracking-wider text-gray-500 block">
                         {t("prices.pricePerNight")}
                       </span>
@@ -154,16 +156,16 @@ const PriceList = () => {
                     {room.prices.map((price) => (
                       <div
                         key={`${room.type}-${price.guests}`}
-                        className="flex items-center justify-between rounded-xl border border-primary-100/80 bg-white/80 px-3 py-2.5 shadow-sm hover:border-primary-200 transition-colors"
+                        className="flex items-center justify-between rounded-xl border border-primary-100/80 bg-white/80 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-colors"
                       >
-                        <dt className="text-sm font-medium text-gray-700 flex-1">
+                        <dt className="text-sm font-medium text-gray-700">
                           {price.guests}
                         </dt>
-                        <dd className="flex items-baseline flex-shrink-0">
-                          <span className="text-base sm:text-lg font-semibold text-primary-700">
+                        <dd className="flex items-baseline">
+                          <span className="text-lg sm:text-xl font-semibold text-primary-700">
                             {formatAmount.format(price.amount)}
                           </span>
-                          <span className="ml-1 text-xs font-medium text-gray-500">
+                          <span className="ml-1 text-xs font-medium text-gray-500 self-start mt-1">
                             {t("prices.currency")}
                           </span>
                         </dd>
@@ -171,27 +173,27 @@ const PriceList = () => {
                     ))}
                   </dl>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap gap-2 min-h-[32px]">
                     {room.amenities.map((amenityKey) => {
                       const Icon = amenityIconMap[amenityKey];
                       return (
                         <span
                           key={amenityKey}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-2.5 py-1 text-xs font-medium text-primary-700 border border-primary-100/50 shadow-sm"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-medium text-primary-700 border border-primary-100/50 shadow-sm"
                         >
-                          {Icon ? <Icon className="h-3 w-3" aria-hidden="true" /> : null}
+                          {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
                           {t(amenityKey)}
                         </span>
                       );
                     })}
                   </div>
 
-                  <div className="mt-auto pt-4 text-center">
+                  <div className="mt-auto pt-6 text-center">
                     <a
                       href="https://booking-universitycentre.otelms.com/booking/rooms/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg w-full"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg w-full sm:max-w-[180px]"
                     >
                       {t("rooms.bookNow")}
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
