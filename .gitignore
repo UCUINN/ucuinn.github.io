@@ -3,6 +3,11 @@ node_modules
 .pnp
 .pnp.js
 
+# Agents
+agents.node_modules
+AGENTS.md 
+
+
 # Production
 dist
 build
