@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Phone, Accessibility } from 'lucide-react';
 import { cn } from '../utils/ui';
@@ -8,6 +8,17 @@ import logoUa from '../img/logo_ua.svg';
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Keyboard navigation: Close menu on Escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isMenuOpen]);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -112,7 +123,8 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-110"
-              title="Accessibility Service"
+              title="Request accessibility assistance"
+              aria-label="Request accessibility assistance"
             >
               <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm hover:shadow-md hover:bg-blue-200 transition-all duration-300">
                 <Accessibility className="w-5 h-5 text-blue-700" />
@@ -124,7 +136,8 @@ const Header = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

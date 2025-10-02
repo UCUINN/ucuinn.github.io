@@ -161,14 +161,14 @@ function Gallery() {
                     type="button"
                     className="group relative h-full w-full cursor-zoom-in"
                     onClick={() => handleOpenLightbox(index)}
+                    aria-label={`View ${image.caption} in fullscreen`}
                   >
-                    <span className="sr-only">{t("gallery.title")}</span>
+                    <span className="sr-only">Click to enlarge</span>
                     <div className="relative h-full w-full">
                       <img
                         src={image.src}
                         alt={image.caption}
                         loading="lazy"
-                        decoding="async"
                         width="800"
                         height="600"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"

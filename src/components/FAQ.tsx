@@ -166,7 +166,7 @@ function FAQ() {
                 {t(`faq.categories.${catKey}`)}
               </h3>
               <div className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-primary-100/50">
-                {group.map((item) => {
+                {group.map((item, idx) => {
                   const open = openId === item.q;
                   return (
                     <div key={item.q} className="group">
@@ -174,6 +174,7 @@ function FAQ() {
                         onClick={() => setOpenId(open ? null : item.q)}
                         className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-primary-50/60 transition-colors"
                         aria-expanded={open}
+                        aria-controls={`faq-answer-${idx}`}
                       >
                         <span className="text-base md:text-lg font-semibold text-gray-900">
                           {item.q}
@@ -183,7 +184,10 @@ function FAQ() {
                         </span>
                       </button>
                       <div
+                        id={`faq-answer-${idx}`}
                         className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${open ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
+                        role="region"
+                        aria-hidden={!open}
                       >
                         <div className="px-5 pb-5 pt-0 text-gray-700 leading-relaxed">
                           {renderAnswer(item.a)}

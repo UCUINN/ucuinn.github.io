@@ -5,6 +5,7 @@ import Room from './components/Room';
 import Location from './components/Location';
 import Footer from './components/Footer';
 import LazySection from './components/LazySection';
+import BackToTop from './components/BackToTop';
 const Gallery = lazy(() => import('./components/Gallery'));
 const PriceList = lazy(() => import('./components/PriceList'));
 const Additional = lazy(() => import('./components/Additional'));
@@ -76,8 +77,11 @@ const App = () => {
 
   return (
     <ErrorBoundary>
+      <a href="#main" className="skip-to-content">
+        Skip to main content
+      </a>
       <Header />
-      <main className="min-h-screen pt-16">
+      <main id="main" className="min-h-screen pt-16">
         <ErrorBoundary>
           <Hero />
         </ErrorBoundary>
@@ -131,6 +135,7 @@ const App = () => {
         </ErrorBoundary>
       </main>
       <Footer />
+      <BackToTop />
     </ErrorBoundary>
   );
 };

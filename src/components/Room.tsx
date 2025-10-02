@@ -127,7 +127,7 @@ const Room = () => {
                     href="https://booking-universitycentre.otelms.com/booking/rooms/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-5 py-2 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-5 py-2 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto"
                   >
                     {t("rooms.bookNow")}
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
