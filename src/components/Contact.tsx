@@ -65,15 +65,20 @@ const Contact = () => {
   return (
     <section 
       id="contacts" 
-      className="py-24 md:py-32 px-6 bg-gradient-to-b from-primary-50/40 via-white to-white"
+      className="relative py-20 overflow-hidden"
       aria-label={t('contact.title')}
     >
-      <div className="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-primary-600 mb-12 text-center tracking-tight">
-          {t('contact.title')}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-12">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-50 via-primary-100/40 to-white" />
+      <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl" />
+      <div className="absolute -left-40 -bottom-40 h-96 w-96 rounded-full bg-primary-200/30 blur-3xl" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700">
+            {t('contact.title')}
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="space-y-8">
             <ContactSection title={t('booking.phone.title')}>
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
@@ -92,7 +97,7 @@ const Contact = () => {
                 {MESSENGER_LINKS.map(({ name, url }) => (
                   <SocialLink 
                     key={name} 
-                    href={url} 
+              href={url} 
                     icon={MessageCircle}
                     ariaLabel={`${t('contact.messenger.contact')} ${name}`}
                   >
@@ -127,7 +132,7 @@ const Contact = () => {
                 </SocialLink>
               </div>
             </ContactSection>
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg min-h-[100px] flex items-center">
+            <div className="p-6 bg-primary-50/80 border border-primary-100/50 rounded-2xl shadow-sm flex items-center backdrop-blur-sm">
               <div className="flex items-center gap-3 w-full">
                 <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
                   <Accessibility className="w-5 h-5 text-blue-700" />
@@ -147,21 +152,21 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
-            <h3 className="text-2xl font-bold mb-6 text-primary-600 tracking-tight leading-tight">
+          <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 tracking-tight">
               {t('contact.address.title')}
             </h3>
-            <address className="text-lg text-gray-800 not-italic leading-relaxed font-medium">
+            <address className="text-base text-gray-700 not-italic leading-relaxed font-medium">
               {t('contact.address.street')}<br />
               {t('contact.address.city')}<br />
               {t('contact.address.country')}, {t('contact.address.postcode')}
             </address>
-            <div className="mt-8 text-gray-800">
-              <p className="text-lg font-medium">{t('social.regards')}</p>
-              <p className="mt-8 text-primary-600 text-xl font-bold tracking-tight leading-snug">
+            <div className="mt-8 text-gray-700">
+              <p className="text-base font-medium">{t('social.regards')}</p>
+              <p className="mt-6 text-primary-700 text-lg font-bold tracking-tight">
                 {t('social.team')}
               </p>
-              <p className="text-primary-600 font-semibold mt-3">{t('social.signature')}</p>
+              <p className="text-primary-700 font-semibold mt-2">{t('social.signature')}</p>
             </div>
           </div>
         </div>
