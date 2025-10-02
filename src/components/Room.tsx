@@ -71,11 +71,11 @@ const Room = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h2
             id="rooms-heading"
-            className="text-4xl font-bold tracking-tight text-primary-700"
+            className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
           >
             {t("rooms.sectionTitle")}
           </h2>
-          <p className="mt-4 text-base text-gray-600">
+          <p className="mt-4 text-base text-gray-700 font-medium">
             {t("info.description.location")}
           </p>
         </div>
@@ -84,8 +84,8 @@ const Room = () => {
           {rooms.map((room) => (
             <article
               key={room.id}
-              className={`group relative overflow-hidden rounded-3xl border border-primary-100/60 bg-white/80 backdrop-blur-sm shadow-xl transition-transform duration-500 hover:-translate-y-1 hover:shadow-2xl h-full w-full ${
-                room.highlight ? "lg:scale-[1.02]" : ""
+              className={`group relative overflow-hidden rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl h-full w-full ${
+                room.highlight ? "lg:scale-[1.02] ring-2 ring-primary-200/50" : ""
               }`}
             >
               <div className="relative h-64 overflow-hidden">
@@ -99,27 +99,27 @@ const Room = () => {
                   className="h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-                <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary-700 shadow">
+                <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1 text-xs font-bold uppercase tracking-widest text-primary-700 shadow-md">
                   {room.accent}
                 </span>
               </div>
 
               <div className="relative z-10 flex flex-col gap-6 p-8 h-[400px]">
                 <div className="min-h-[100px]">
-                  <h3 className="text-2xl font-semibold text-gray-900">
+                  <h3 className="text-2xl font-bold text-gray-900">
                     {room.title}
                   </h3>
-                  <p className="mt-3 text-sm text-gray-600">
+                  <p className="mt-3 text-sm text-gray-700 font-medium">
                     {room.description}
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-primary-100 bg-white/70 px-6 py-4 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-primary-100/50 bg-white/80 px-6 py-4 shadow-sm">
                   <div className="text-center sm:text-left">
-                    <span className="text-xs uppercase tracking-wider text-gray-400">
+                    <span className="text-xs uppercase tracking-wider text-gray-600 font-semibold">
                       {t("prices.pricePerNight")}
                     </span>
-                    <p className="text-xl font-semibold text-primary-600">
+                    <p className="text-xl font-bold text-primary-700">
                       {room.priceLabel}
                     </p>
                   </div>
@@ -127,14 +127,14 @@ const Room = () => {
                     href="https://booking-universitycentre.otelms.com/booking/rooms/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-600 bg-transparent px-5 py-2 text-sm font-semibold text-primary-600 transition-all hover:bg-primary-600 hover:text-white hover:shadow-md w-full sm:w-auto mt-2 sm:mt-0"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-600 bg-transparent px-5 py-2 text-sm font-bold text-primary-600 transition-all duration-300 hover:bg-primary-600 hover:text-white hover:shadow-md w-full sm:w-auto mt-2 sm:mt-0"
                   >
                     {t("rooms.bookNow")}
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </div>
 
-                <div className="flex flex-wrap gap-4 mt-4">
+                <div className="flex justify-center flex-wrap gap-2 mt-4">
                   {room.amenities.map((amenityKey) => {
                     const Icon = amenityIconMap[amenityKey];
                     return (

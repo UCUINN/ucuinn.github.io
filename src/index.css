@@ -3,26 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --primary-50: #f3f1fe;
-  --primary-100: #e9e4fd;
-  --primary-200: #d5ccfb;
-  --primary-300: #b7a7f7;
-  --primary-400: #9377f2;
-  --primary-500: #764aec;
-  --primary-600: #6241f5;
-  --primary-700: #4f1ed9;
-  --primary-800: #4219b5;
-  --primary-900: #381991;
+  --primary-50: #FEFAEF;
+  --primary-100: #F1ECFE;
+  --primary-200: #D8CCFC;
+  --primary-300: #B9A7F7;
+  --primary-400: #9776F2;
+  --primary-500: #7C4AED;
+  --primary-600: #6536E3;
+  --primary-700: #5329C7;
+  --primary-800: #4320A3;
+  --primary-900: #351A83;
+  --cream: #FEFAEF;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
 
 body {
-  @apply text-gray-800 bg-white;
+  @apply text-gray-900;
+  background-color: #FEFAEF;
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
-  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {

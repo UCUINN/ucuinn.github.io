@@ -8,17 +8,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f3f1fe',
-          100: '#e9e4fd',
-          200: '#d5ccfb',
-          300: '#b7a7f7',
-          400: '#9377f2',
-          500: '#764aec',
-          600: '#6241f5',
-          700: '#4f1ed9',
-          800: '#4219b5',
-          900: '#381991',
+          50:  '#F9F7FF', // very light background (lavender tint)
+          100: '#F1ECFE', // subtle light purple
+          200: '#D8CCFC', // soft lavender
+          300: '#B9A7F7', // light purple
+          400: '#9776F2', // medium purple
+          500: '#7C4AED', // main brand purple
+          600: '#6536E3', // slightly darker accent
+          700: '#5329C7', // deep purple
+          800: '#4320A3', // darker background tone
+          900: '#351A83', // almost eggplant, strong contrast
         },
+        'ghost-white': '#FEFAEF',
+        'cream': '#FEFAEF',
       },
     },
   },

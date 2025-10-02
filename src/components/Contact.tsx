@@ -65,7 +65,7 @@ const Contact = () => {
   return (
     <section 
       id="contacts" 
-      className="py-16 px-6 bg-gradient-to-b from-blue-50 to-white"
+      className="py-24 md:py-32 px-6 bg-gradient-to-b from-primary-50/40 via-white to-white"
       aria-label={t('contact.title')}
     >
       <div className="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-lg">

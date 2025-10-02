@@ -80,8 +80,8 @@ const Location = () => {
               </p>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-xl  border-gray-100">
-              <h3 className="font-semibold text-2xl text-gray-800 mb-6">
+            <div className="bg-primary-50/30 p-8 rounded-2xl border border-primary-100/50 shadow-sm">
+              <h3 className="font-bold text-2xl text-gray-900 mb-6">
                 {t('info.description.whyChoose')}
               </h3>
               <ul className="space-y-6">
@@ -89,10 +89,10 @@ const Location = () => {
                   <li key={item} className="flex gap-4">
                     <div className="w-1 flex-shrink-0 bg-primary-600 rounded-full"></div>
                     <div>
-                      <p className="font-bold text-primary-600 mb-1">
+                      <p className="font-bold text-primary-700 mb-1">
                         {t(`info.description.${item}.title`)}
                       </p>
-                      <p className="text-gray-700">
+                      <p className="text-gray-700 font-medium">
                         {t(`info.description.${item}.text`)}
                       </p>
                     </div>
@@ -107,14 +107,14 @@ const Location = () => {
       <section id="location" className="py-16 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-semibold text-primary-600 mb-4">
+            <h3 className="text-3xl font-bold text-primary-700 mb-4">
               {t('info.location.title')}
             </h3>
-            <p className="text-lg text-gray-700 flex items-center justify-center gap-2">
-              <MapPin className="w-6 h-6 text-primary-600" />
+            <p className="text-lg text-gray-700 font-semibold flex items-center justify-center gap-2">
+              <MapPin className="w-6 h-6 text-primary-700" />
               {t('info.location.address')}
             </p>
-            <p className="text-base text-gray-600 mt-2">
+            <p className="text-base text-gray-700 font-medium mt-2">
               {t('info.location.reception')}
             </p>
           </div>

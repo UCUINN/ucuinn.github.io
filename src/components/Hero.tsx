@@ -12,7 +12,7 @@ export const Hero = () => {
 	const textY = useTransform(scrollY, [0, 300], [0, 100]);
 
 	return (
-		<section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+		<section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32">
 			{/* Background Image with Parallax Effect */}
 			<motion.div
 				initial={{ scale: 1.1 }}

@@ -114,7 +114,6 @@ function Gallery() {
       const bundle = await loadLightbox();
       if (bundle && isMountedRef.current) {
         setLightboxBundle(bundle);
-        setLightboxOpen(true);
       }
     },
     [loadLightbox]
@@ -123,7 +122,7 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-primary-50/30 to-white py-20"
+      className="relative overflow-hidden bg-gradient-to-b from-white via-primary-50/30 to-white py-24 md:py-32"
       aria-labelledby="gallery-heading"
     >
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,_rgba(98,65,245,0.15)_0,_rgba(255,255,255,0)_60%)]" />
@@ -131,17 +130,14 @@ function Gallery() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             id="gallery-heading"
-            className="text-4xl font-bold tracking-tight text-primary-700"
+            className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
           >
             {t("gallery.title")}
           </h2>
-          <p className="mt-4 text-base text-gray-600">
-            {t("gallery.description")}
-          </p>
         </div>
 
-        <div className="gallery-container mt-12 rounded-3xl border border-primary-100/60 bg-white/80 backdrop-blur-sm shadow-xl">
-          <div className="relative aspect-[16/11] md:aspect-video">
+        <div className="gallery-container mt-12 rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="relative aspect-[16/11] md:aspect-video overflow-hidden">
             <Swiper
               modules={[Navigation, Pagination, Keyboard, EffectFade, Autoplay]}
               spaceBetween={0}
@@ -152,10 +148,11 @@ function Gallery() {
               keyboard={{ enabled: true }}
               effect="fade"
               autoplay={{
-                delay: 5000,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
+              speed={600}
               className="gallery-swiper h-full w-full"
             >
               {images.map((image, index) => (
@@ -177,7 +174,7 @@ function Gallery() {
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
                       />
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent px-6 pb-6 pt-16 text-left">
-                        <p className="text-sm font-medium text-white md:text-base">
+                        <p className="text-sm font-semibold text-white md:text-base">
                           {image.caption}
                         </p>
                       </div>
@@ -187,7 +184,7 @@ function Gallery() {
               ))}
             </Swiper>
           </div>
-          <div className="swiper-pagination-custom border-t border-primary-100/60 bg-white/60 py-5" />
+          <div className="swiper-pagination-custom border-t border-primary-100/50 bg-white/70 py-5" />
         </div>
 
         <div className="mt-10 flex justify-center">
@@ -195,7 +192,7 @@ function Gallery() {
             href="https://drive.google.com/drive/folders/1hBpKFPunYQVaQya2LF2YNaDZ8eb0hbWX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-white/90 px-6 py-3 text-sm font-semibold text-primary-700 shadow-lg ring-1 ring-primary-100 transition-all hover:-translate-y-0.5 hover:bg-white"
+            className="inline-flex items-center gap-2 rounded-full bg-white/90 px-6 py-3 text-sm font-bold text-primary-700 shadow-lg ring-1 ring-primary-100/80 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-xl"
           >
             <ImagePlus className="h-5 w-5" aria-hidden="true" />
             {t("gallery.morePhoto")}
