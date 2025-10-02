@@ -54,15 +54,16 @@ const Location = () => {
 
   return (
     <>
-      <section id="info" className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-primary-600 mb-12 text-center">
+      <section id="info" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-700 mb-12 text-center tracking-tight">
             {t('info.findUs')}
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div className="space-y-6">
-              <div className="aspect-video relative overflow-hidden rounded-xl  border-gray-100">
+              <div className="aspect-video relative overflow-hidden rounded-2xl border border-primary-100/50 shadow-sm">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -73,15 +74,15 @@ const Location = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-lg text-gray-700 bg-gray-50 p-6 rounded-lg border-gray-100">
+              <p className="text-base text-gray-700 font-medium bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-primary-100/50 shadow-sm">
                 {t('info.description.welcome')}{' '}
                 <span className="font-bold text-primary-600">UCU Inn</span>{' '}
                 — {t('info.description.location')}
               </p>
             </div>
 
-            <div className="bg-primary-50/30 p-8 rounded-2xl border border-primary-100/50 shadow-sm">
-              <h3 className="font-bold text-2xl text-gray-900 mb-6">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
+              <h3 className="font-bold text-xl sm:text-2xl text-gray-900 mb-6">
                 {t('info.description.whyChoose')}
               </h3>
               <ul className="space-y-6">
@@ -89,10 +90,10 @@ const Location = () => {
                   <li key={item} className="flex gap-4">
                     <div className="w-1 flex-shrink-0 bg-primary-600 rounded-full"></div>
                     <div>
-                      <p className="font-bold text-primary-700 mb-1">
+                      <p className="font-bold text-primary-700 mb-1 text-sm sm:text-base">
                         {t(`info.description.${item}.title`)}
                       </p>
-                      <p className="text-gray-700 font-medium">
+                      <p className="text-gray-700 font-medium text-sm">
                         {t(`info.description.${item}.text`)}
                       </p>
                     </div>
@@ -104,13 +105,14 @@ const Location = () => {
         </div>
       </section>
 
-      <section id="location" className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="location" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50/20 via-white to-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-primary-700 mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary-700 mb-4 tracking-tight">
               {t('info.location.title')}
             </h3>
-            <p className="text-lg text-gray-700 font-semibold flex items-center justify-center gap-2">
+            <p className="text-base sm:text-lg text-gray-700 font-semibold flex items-center justify-center gap-2">
               <MapPin className="w-6 h-6 text-primary-700" />
               {t('info.location.address')}
             </p>
@@ -119,7 +121,7 @@ const Location = () => {
             </p>
           </div>
 
-          <div className="w-full aspect-video rounded-xl overflow-hidden border-4 border-gray-100">
+          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-primary-100/50 shadow-lg">
             <div ref={mapContainerRef} className="w-full h-full" aria-live="polite">
               {shouldLoadMap ? (
                 <iframe

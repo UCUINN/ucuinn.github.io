@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
   }, []);
 
   return (
-    <footer className={`bg-gray-900 text-white py-4 px-4 ${className ?? ''}`}>
+    <footer className={`bg-primary-900 text-white py-4 px-4 ${className ?? ''}`}>
       <div className="container mx-auto text-center text-sm md:text-base">
         <p className="font-medium flex items-center justify-center gap-3">
           <span> {currentTime.getFullYear()}</span>

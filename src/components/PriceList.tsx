@@ -96,7 +96,7 @@ const PriceList = () => {
       className="relative py-20 overflow-hidden"
       aria-labelledby="prices-heading"
     >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50/40 via-white to-white" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2
@@ -128,19 +128,19 @@ const PriceList = () => {
                   room.highlight ? "ring-2 ring-primary-200/50" : ""
                 }`}
               >
-                <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-200/15 blur-3xl" />
-                <div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-100/15 blur-3xl" />
+                <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-200/10 blur-3xl" />
+                <div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-100/10 blur-3xl" />
 
                 <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="flex-1">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-600 shadow-sm">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
                         {accentLabel}
                       </div>
                       <h3 className="mt-3 text-2xl font-bold text-gray-900">
                         {title}
                       </h3>
-                      <p className="mt-1.5 text-sm text-gray-700 font-medium sm:h-10 line-clamp-2">{description}</p>
+                      <p className="mt-2 text-sm text-gray-700 font-medium sm:h-10 line-clamp-2">{description}</p>
                     </div>
                     <div className="text-center sm:text-right bg-primary-50/80 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
                       <span className="text-xs uppercase tracking-wider text-gray-600 font-semibold block">
@@ -156,7 +156,7 @@ const PriceList = () => {
                     {room.prices.map((price) => (
                       <div
                         key={`${room.type}-${price.guests}`}
-                        className="flex items-center justify-between rounded-xl border border-primary-100/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200/80 transition-all duration-300"
+                        className="flex items-center justify-between rounded-xl border border-primary-100/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-all duration-300"
                       >
                         <dt className="text-sm font-semibold text-gray-700">
                           {price.guests}
@@ -165,7 +165,7 @@ const PriceList = () => {
                           <span className="text-lg sm:text-xl font-bold text-primary-700">
                             {formatAmount.format(price.amount)}
                           </span>
-                          <span className="ml-1 text-xs font-semibold text-gray-600 self-start mt-1">
+                          <span className="ml-1 text-xs font-medium text-gray-600 self-start mt-1">
                             {t("prices.currency")}
                           </span>
                         </dd>
@@ -209,10 +209,10 @@ const PriceList = () => {
           {callouts.map(({ icon: Icon, title, accent }, index) => (
             <div
               key={`${title}-${index}`}
-              className="relative overflow-hidden rounded-2xl border border-primary-100/50 bg-white/80 backdrop-blur-sm p-6 shadow-sm hover:shadow-md transition-all duration-300"
+              className="relative overflow-hidden rounded-2xl border border-primary-100/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="mb-4 inline-flex items-center gap-3 text-primary-600">
-                <span className="rounded-xl bg-primary-100/80 p-3">
+                <span className="rounded-xl bg-primary-50/80 p-3">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
               </div>

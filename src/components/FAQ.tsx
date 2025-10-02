@@ -109,14 +109,14 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="relative py-16">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50/60 via-white to-white" />
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-primary-700">
+    <section id="faq" className="relative py-20 overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700">
             {t('faq.title', langKey === 'en' ? { defaultValue: 'F.A.Q' } : { defaultValue: 'F.A.Q' })}
           </h2>
-          <p className="mt-3 text-gray-600">
+          <p className="mt-4 text-base text-gray-700 font-medium">
             {t(
               'faq.subtitle',
               langKey === 'en'
@@ -126,8 +126,7 @@ function FAQ() {
           </p>
         </div>
 
-        {/* Search */}
-        <div className="mb-6">
+        <div className="mb-8">
           <label htmlFor="faq-search" className="sr-only">
             {t('faq.searchLabel', langKey === 'en' ? { defaultValue: 'Search FAQ' } : { defaultValue: 'Пошук по FAQ' })}
           </label>
@@ -137,7 +136,7 @@ function FAQ() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-xl border border-gray-200 bg-white/90 px-4 py-3 pr-10 text-gray-700 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+              className="w-full rounded-xl border border-primary-100/50 bg-white/90 backdrop-blur-sm px-4 py-3 pr-10 text-gray-700 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
               placeholder={t(
                 'faq.searchPlaceholder',
                 langKey === 'en' ? { defaultValue: 'Type to filter questions...' } : { defaultValue: 'Введіть запит для фільтру...' }
@@ -163,10 +162,10 @@ function FAQ() {
           if (group.length === 0) return null;
           return (
             <div key={catKey} className="mb-8">
-              <h3 className="text-xl font-bold text-primary-700 mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-primary-700 mb-4">
                 {t(`faq.categories.${catKey}`)}
               </h3>
-              <div className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur shadow-sm ring-1 ring-primary-100">
+              <div className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-primary-100/50">
                 {group.map((item) => {
                   const open = openId === item.q;
                   return (

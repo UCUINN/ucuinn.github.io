@@ -122,10 +122,10 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-primary-50/30 to-white py-24 md:py-32"
+      className="relative overflow-hidden py-20"
       aria-labelledby="gallery-heading"
     >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,_rgba(98,65,245,0.15)_0,_rgba(255,255,255,0)_60%)]" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2
