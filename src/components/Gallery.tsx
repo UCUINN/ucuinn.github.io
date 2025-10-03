@@ -75,27 +75,22 @@ function Gallery() {
   }));
 
   const loadLightbox = useCallback(async () => {
-    console.log('loadLightbox called, current ref:', lightboxRef.current, 'isLoading:', isLoadingLightbox);
     if (lightboxRef.current || isLoadingLightbox) {
       return lightboxRef.current;
     }
 
     setIsLoadingLightbox(true);
     try {
-      console.log('Loading lightbox styles...');
       await Promise.all([
         import("yet-another-react-lightbox/styles.css"),
         import("yet-another-react-lightbox/plugins/captions.css"),
       ]);
 
-      console.log('Loading lightbox modules...');
       const [lightboxModule, zoomModule, captionsModule] = await Promise.all([
         import("yet-another-react-lightbox"),
         import("yet-another-react-lightbox/plugins/zoom"),
         import("yet-another-react-lightbox/plugins/captions"),
       ]);
-
-      console.log('Lightbox modules loaded:', { lightboxModule, zoomModule, captionsModule });
 
       const bundle = {
         Lightbox: lightboxModule.default,
@@ -105,7 +100,6 @@ function Gallery() {
       if (isMountedRef.current) {
         setLightboxBundle(bundle);
       }
-      console.log('Lightbox bundle created:', bundle);
       return bundle;
     } catch (error) {
       console.error("Failed to load lightbox", error);
@@ -119,29 +113,17 @@ function Gallery() {
 
   const handleOpenLightbox = useCallback(
     async (index: number) => {
-      console.log('Opening lightbox for index:', index);
-      console.log('isMountedRef.current:', isMountedRef.current);
       setCurrentImageIndex(index);
       const bundle = await loadLightbox();
-      console.log('Lightbox bundle loaded:', bundle);
-      console.log('isMountedRef.current after loadLightbox:', isMountedRef.current);
       if (bundle && isMountedRef.current) {
         setLightboxBundle(bundle);
         setLightboxOpen(true);
-        console.log('Lightbox should be open now');
-      } else {
-        console.error('Failed to load lightbox bundle or component unmounted', {
-          bundle: !!bundle,
-          isMounted: isMountedRef.current
-        });
       }
     },
     [loadLightbox]
   );
 
   const LightboxComponent = lightboxBundle?.Lightbox;
-  
-  console.log('Gallery render - lightboxOpen:', lightboxOpen, 'LightboxComponent:', LightboxComponent, 'currentImageIndex:', currentImageIndex);
 
   return (
     <section
