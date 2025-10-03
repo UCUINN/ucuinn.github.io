@@ -114,6 +114,7 @@ function Gallery() {
       const bundle = await loadLightbox();
       if (bundle && isMountedRef.current) {
         setLightboxBundle(bundle);
+        setLightboxOpen(true);
       }
     },
     [loadLightbox]
