@@ -29,7 +29,6 @@ export const Hero = () => {
 						height={1080}
 						loading="eager"
 						decoding="async"
-						fetchPriority="high"
 						className="absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-all will-change-transform"
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
