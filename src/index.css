@@ -3,139 +3,181 @@
 @tailwind utilities;
 
 :root {
-  --primary-50: #FEFAEF;
-  --primary-100: #F1ECFE;
-  --primary-200: #D8CCFC;
-  --primary-300: #B9A7F7;
-  --primary-400: #9776F2;
-  --primary-500: #7C4AED;
-  --primary-600: #6536E3;
-  --primary-700: #5329C7;
-  --primary-800: #4320A3;
-  --primary-900: #351A83;
-  --cream: #FEFAEF;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	--primary-50: #fefaef;
+	--primary-100: #f1ecfe;
+	--primary-200: #d8ccfc;
+	--primary-300: #b9a7f7;
+	--primary-400: #9776f2;
+	--primary-500: #7c4aed;
+	--primary-600: #6536e3;
+	--primary-700: #5329c7;
+	--primary-800: #4320a3;
+	--primary-900: #351a83;
+	--cream: #fefaef;
+	font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	line-height: 1.65;
+	font-weight: 400;
+	font-feature-settings: 'cv05', 'cv11';
 }
 
 body {
-  @apply text-gray-900;
-  background-color: #FEFAEF;
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	@apply text-gray-900;
+	background-color: #fefaef;
+	font-family: "Inter", system-ui, -apple-system, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: #351a83;
+}
+
+h1 {
+	font-size: clamp(2.5rem, 5vw, 6rem);
+	font-weight: 800;
+	letter-spacing: -0.04em;
+}
+
+h2 {
+	font-size: clamp(2rem, 4vw, 3.75rem);
+	font-weight: 700;
+}
+
+h3 {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+}
+
+p {
+	line-height: 1.65;
+	letter-spacing: 0;
+}
+
+strong, b {
+	font-weight: 600;
+}
+
+.font-display {
+	font-weight: 800;
+	letter-spacing: -0.03em;
 }
 
 * {
-  scroll-behavior: smooth;
-  box-sizing: border-box;
+	scroll-behavior: smooth;
+	box-sizing: border-box;
 }
 
 /* Accessibility: Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 
 html {
-  scroll-behavior: auto;
-  overflow-y: scroll;
-  height: 100%;
+	scroll-behavior: auto;
+	overflow-y: scroll;
+	height: 100%;
 }
 
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
+html,
+body {
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
 }
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 
 .aspect-video,
 .aspect-portrait,
 .aspect-landscape {
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 
 .aspect-video > *,
 .aspect-portrait > *,
 .aspect-landscape > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 .swiper-pagination-bullet {
-  background-color: #d1d5db;
-  opacity: 1;
+	background-color: #d1d5db;
+	opacity: 1;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #1f2937;
+	background-color: #1f2937;
 }
 
 /* Skip to content link for accessibility */
 .skip-to-content {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #6536E3;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 0 0 4px 0;
-  z-index: 100;
-  font-weight: 600;
-  transition: top 0.2s;
+	position: absolute;
+	top: -40px;
+	left: 0;
+	background: #6536e3;
+	color: white;
+	padding: 8px 16px;
+	text-decoration: none;
+	border-radius: 0 0 4px 0;
+	z-index: 100;
+	font-weight: 600;
+	transition: top 0.2s;
 }
 
 .skip-to-content:focus {
-  top: 0;
+	top: 0;
 }
 
 /* Toast animation */
 @keyframes slide-in {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 .animate-slide-in {
-  animation: slide-in 0.3s ease-out;
+	animation: slide-in 0.3s ease-out;
 }

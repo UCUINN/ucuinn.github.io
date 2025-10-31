@@ -45,21 +45,21 @@ export const Hero = () => {
 			>
 				<motion.h1
 					variants={fadeInUpVariant}
-					className="text-6xl md:text-8xl font-extrabold mb-10 tracking-tight drop-shadow-2xl will-change-transform"
+					className="text-6xl md:text-8xl font-bold mb-8 tracking-tight drop-shadow-2xl will-change-transform"
 				>
-					<span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/95 to-white/90 font-display">
+					<span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white">
 						UCU INN
 					</span>
 				</motion.h1>
 
 				<motion.div
 					variants={fadeInUpVariant}
-					className="flex flex-col items-start gap-6 mb-14"
+					className="flex flex-col items-start gap-8 mb-14"
 				>
-					<p className="text-xl md:text-3xl font-normal leading-relaxed drop-shadow-lg max-w-2xl">
+					<p className="text-xl md:text-2xl font-light leading-relaxed drop-shadow-lg max-w-md">
 						{t("hero.description")}
 					</p>
-					<p className="text-lg md:text-xl text-white/90 drop-shadow-lg max-w-xl font-medium whitespace-pre-line">
+					<p className="text-lg md:text-xl text-gray-200 drop-shadow-lg max-w-md">
 						{t("hero.location")}
 					</p>
 				</motion.div>
@@ -72,16 +72,16 @@ export const Hero = () => {
 						href="https://booking-universitycentre.otelms.com/booking/rooms/en"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center justify-center gap-3 bg-primary-600 text-white px-9 py-4 rounded-xl hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-base font-semibold"
+						className="group inline-flex items-center justify-center gap-3 bg-primary-600 text-white px-8 py-4 rounded-xl hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg"
 					>
 						<Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
-						<span>{t("hero.bookNow")}</span>
+						<span className="font-medium tracking-wide">{t("hero.bookNow")}</span>
 					</a>
 					<a
 						href="#gallery"
-						className="group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-9 py-4 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/30 transform hover:scale-105 hover:shadow-2xl shadow-lg text-base font-semibold"
+						className="group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/30 transform hover:scale-105 hover:shadow-xl shadow-lg"
 					>
-						<span>{t("hero.viewRooms")}</span>
+						<span className="font-medium tracking-wide">{t("hero.viewRooms")}</span>
 					</a>
 				</motion.div>
 			</motion.div>

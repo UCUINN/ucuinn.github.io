@@ -24,7 +24,7 @@ const SocialLink = memo(({ href, icon: Icon, children, ariaLabel }: SocialLinkPr
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel || `${children} link`}
-      className="flex items-center gap-3 text-gray-800 hover:text-primary-600 bg-primary-50 px-4 py-2 rounded-full transition-transform transform hover:scale-105"
+      className="flex items-center gap-3 text-gray-800 hover:text-primary-700 bg-primary-50 px-5 py-2.5 rounded-full transition-transform transform hover:scale-105"
       onClick={(e) => {
         try {
           if (!href) {
@@ -38,7 +38,7 @@ const SocialLink = memo(({ href, icon: Icon, children, ariaLabel }: SocialLinkPr
       }}
     >
       <Icon size={20} aria-hidden="true" />
-      <span className="font-medium text-sm tracking-wide leading-6">{children}</span>
+      <span className="font-semibold text-base">{children}</span>
     </a>
   );
 });
@@ -52,7 +52,7 @@ interface ContactSectionProps {
 
 const ContactSection = ({ title, children }: ContactSectionProps) => (
   <div className="space-y-4" role="region" aria-label={title}>
-    <h3 className="font-bold text-lg md:text-xl text-gray-900 tracking-tight leading-tight">
+    <h3 className="font-bold text-xl md:text-2xl text-gray-900">
       {title}
     </h3>
     {children}
@@ -72,8 +72,8 @@ const Contact = () => {
       <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl" />
       <div className="absolute -left-40 -bottom-40 h-96 w-96 rounded-full bg-primary-200/30 blur-3xl" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700">
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-800">
             {t('contact.title')}
           </h2>
         </div>
@@ -82,15 +82,15 @@ const Contact = () => {
             <ContactSection title={t('booking.phone.title')}>
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-4 text-gray-800 hover:text-primary-600 transition-transform transform hover:scale-105"
+                className="flex items-center gap-4 text-gray-800 hover:text-primary-700 transition-transform transform hover:scale-105"
                 aria-label={t('booking.phone.call')}
               >
-                <div className="bg-primary-100 p-2 rounded-full">
+                <div className="bg-primary-100 p-3 rounded-full">
                   <Phone className="text-primary-600 h-6 w-6" aria-hidden="true" />
                 </div>
-                <span className="text-lg font-semibold tracking-wide">{CONTACT_INFO.phone}</span>
+                <span className="text-xl font-bold">{CONTACT_INFO.phone}</span>
               </a>
-              <div className="text-gray-500 text-sm font-medium" aria-label={t('booking.phone.extension')}>
+              <div className="text-gray-500 text-base font-medium" aria-label={t('booking.phone.extension')}>
                 #{t('booking.phone.extension')}
               </div>
               <div className="flex flex-wrap gap-4 mt-4">
@@ -110,13 +110,13 @@ const Contact = () => {
             <ContactSection title={t('booking.email.title')}>
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-4 text-gray-800 hover:text-primary-600 transition-transform transform hover:scale-105"
+                className="flex items-center gap-4 text-gray-800 hover:text-primary-700 transition-transform transform hover:scale-105"
                 aria-label={t('booking.email.send')}
               >
-                <div className="bg-primary-100 p-2 rounded-full">
+                <div className="bg-primary-100 p-3 rounded-full">
                   <Mail className="text-primary-600 h-6 w-6" aria-hidden="true" />
                 </div>
-                <span className="text-base font-medium tracking-wide leading-5">
+                <span className="text-lg font-semibold leading-relaxed">
                   {CONTACT_INFO.email}
                 </span>
               </a>
@@ -153,20 +153,20 @@ const Contact = () => {
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
-            <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900">
               {t('contact.address.title')}
             </h3>
-            <address className="text-base text-gray-700 not-italic leading-relaxed font-medium">
+            <address className="text-lg text-gray-700 not-italic leading-relaxed">
               {t('contact.address.street')}<br />
               {t('contact.address.city')}<br />
               {t('contact.address.country')}, {t('contact.address.postcode')}
             </address>
             <div className="mt-8 text-gray-700">
-              <p className="text-base font-medium">{t('social.regards')}</p>
-              <p className="mt-6 text-primary-700 text-lg font-bold tracking-tight">
+              <p className="text-base leading-relaxed">{t('social.regards')}</p>
+              <p className="mt-6 text-primary-800 text-xl font-bold">
                 {t('social.team')}
               </p>
-              <p className="text-primary-700 font-semibold mt-2">{t('social.signature')}</p>
+              <p className="text-primary-700 font-semibold text-base mt-2">{t('social.signature')}</p>
             </div>
           </div>
         </div>

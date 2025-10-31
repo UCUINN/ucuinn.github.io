@@ -1,245 +1,256 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ArrowUpRight,
-  Bed,
-  Coffee,
-  Users,
-  Wifi,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowUpRight, Bed, Coffee, Users, Wifi, type LucideIcon } from "lucide-react";
 
 interface RoomPriceInfo {
-  type: "twin" | "suite";
-  highlight?: boolean;
-  prices: {
-    guests: string;
-    amount: number;
-  }[];
-  amenities: string[];
+	type: "twin" | "suite";
+	highlight?: boolean;
+	prices: {
+		guests: string;
+		amount: number;
+	}[];
+	amenities: string[];
 }
 
 const amenityIconMap: Record<string, LucideIcon> = {
-  "rooms.amenities.twoPersons": Users,
-  "rooms.amenities.fourPersons": Users,
-  "rooms.amenities.wifi": Wifi,
-  "rooms.amenities.bathroom": Bed,
+	"rooms.amenities.twoPersons": Users,
+	"rooms.amenities.fourPersons": Users,
+	"rooms.amenities.wifi": Wifi,
+	"rooms.amenities.bathroom": Bed,
 };
 
 const PriceList = () => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  const formatAmount = useMemo(
-    () =>
-      new Intl.NumberFormat("uk-UA", {
-        maximumFractionDigits: 0,
-      }),
-    []
-  );
+	const formatAmount = useMemo(
+		() =>
+			new Intl.NumberFormat("uk-UA", {
+				maximumFractionDigits: 0,
+			}),
+		[],
+	);
 
-  const rooms: RoomPriceInfo[] = [
-    {
-      type: "twin",
-      prices: [
-        { guests: t("prices.oneGuest"), amount: 1500 },
-        { guests: t("prices.twoGuests"), amount: 1800 },
-      ],
-      amenities: [
-        "rooms.amenities.twoPersons",
-        "rooms.amenities.wifi",
-        "rooms.amenities.bathroom",
-      ],
-    },
-    {
-      type: "suite",
-      highlight: true,
-      prices: [
-        { guests: t("prices.oneGuest"), amount: 1800 },
-        { guests: t("prices.twoGuests"), amount: 2100 },
-        { guests: t("prices.threeGuests"), amount: 2400 },
-      ],
-      amenities: [
-        "rooms.amenities.fourPersons",
-        "rooms.amenities.wifi",
-        "rooms.amenities.bathroom",
-      ],
-    },
-  ];
+	const rooms: RoomPriceInfo[] = [
+		{
+			type: "twin",
+			prices: [
+				{ guests: t("prices.oneGuest"), amount: 1500 },
+				{ guests: t("prices.twoGuests"), amount: 1800 },
+			],
+			amenities: [
+				"rooms.amenities.twoPersons",
+				"rooms.amenities.wifi",
+				"rooms.amenities.bathroom",
+			],
+		},
+		{
+			type: "suite",
+			highlight: true,
+			prices: [
+				{ guests: t("prices.oneGuest"), amount: 1800 },
+				{ guests: t("prices.twoGuests"), amount: 2100 },
+				{ guests: t("prices.threeGuests"), amount: 2400 },
+			],
+			amenities: [
+				"rooms.amenities.fourPersons",
+				"rooms.amenities.wifi",
+				"rooms.amenities.bathroom",
+			],
+		},
+	];
 
-  const callouts: Array<{
-    icon: LucideIcon;
-    title: string;
-    accent?: string;
-  }> = [
-    {
-      icon: Bed,
-      title: `${t("prices.additionalInfo.amenities")} ${t(
-        "prices.additionalInfo.amenitiesdetailed"
-      )}`.trim(),
-    },
-    {
-      icon: Wifi,
-      title: t("prices.additionalInfo.wifi"),
-      accent: t("prices.additionalInfo.wifiname"),
-    },
-    {
-      icon: Coffee,
-      title: `${t("prices.additionalInfo.breakfast")} 300 ${t(
-        "prices.currency"
-      )}`.replace(/\s+/g, " "),
-    },
-  ];
+	const callouts: Array<{
+		icon: LucideIcon;
+		title: string;
+		accent?: string;
+	}> = [
+		{
+			icon: Bed,
+			title: `${t("prices.additionalInfo.amenities")} ${t(
+				"prices.additionalInfo.amenitiesdetailed",
+			)}`.trim(),
+		},
+		{
+			icon: Wifi,
+			title: t("prices.additionalInfo.wifi"),
+			accent: t("prices.additionalInfo.wifiname"),
+		},
+		{
+			icon: Coffee,
+			title: t("prices.additionalInfo.breakfast"),
+		},
+	];
 
-  return (
-    <section
-      id="prices"
-      className="relative py-20 overflow-hidden"
-      aria-labelledby="prices-heading"
-    >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2
-            id="prices-heading"
-            className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
-          >
-            {t("prices.title")}
-          </h2>
-          <p className="mt-4 text-base text-gray-700 font-medium">
-            {t("prices.additionalInfo.bedTypes")}
-          </p>
-        </div>
+	return (
+		<section
+			id="prices"
+			className="relative py-20 overflow-hidden"
+			aria-labelledby="prices-heading"
+		>
+			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="max-w-3xl mx-auto text-center">
+					<h2
+						id="prices-heading"
+						className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
+					>
+						{t("prices.title")}
+					</h2>
+					<p className="mt-4 text-base text-gray-700 font-medium">
+						{t("prices.additionalInfo.bedTypes")}
+					</p>
+				</div>
 
-        <div className="mt-12 grid gap-6 sm:gap-8 lg:grid-cols-2 auto-rows-fr">
-          {rooms.map((room) => {
-            const accentLabel = t(`prices.roomTypes.${room.type}.namename`);
-            const title = t(`rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.title`);
-            const description = t(
-              `rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.description`
-            );
-            const basePrice = t(
-              `rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.price`
-            );
+				<div className="mt-12 grid gap-6 sm:gap-8 lg:grid-cols-2 auto-rows-fr">
+					{rooms.map(room => {
+						const accentLabel = t(`prices.roomTypes.${room.type}.namename`);
+						const title = t(
+							`rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.title`,
+						);
+						const description = t(
+							`rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.description`,
+						);
+						const basePrice = t(
+							`rooms.${room.type === "twin" ? "twin" : "semiLuxury"}.price`,
+						);
 
-            return (
-              <article
-                key={room.type}
-                className={`relative overflow-hidden rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
-                  room.highlight ? "ring-2 ring-primary-200/50" : ""
-                }`}
-              >
-                <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-200/10 blur-3xl" />
-                <div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-100/10 blur-3xl" />
+						return (
+							<article
+								key={room.type}
+								className={`relative overflow-hidden rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+									room.highlight ? "ring-2 ring-primary-200/50" : ""
+								}`}
+							>
+								<div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-200/10 blur-3xl" />
+								<div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-100/10 blur-3xl" />
 
-                <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
-                        {accentLabel}
-                      </div>
-                      <h3 className="mt-3 text-2xl font-bold text-gray-900">
-                        {title}
-                      </h3>
-                      <p className="mt-2 text-sm text-gray-700 font-medium sm:h-10 line-clamp-2">{description}</p>
-                    </div>
-                    <div className="text-center sm:text-right bg-primary-50/80 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
-                      <span className="text-xs uppercase tracking-wider text-gray-600 font-semibold block">
-                        {t("prices.pricePerNight")}
-                      </span>
-                      <p className="text-lg font-semibold text-primary-700">
-                        {basePrice}
-                      </p>
-                    </div>
-                  </div>
+								<div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
+									<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+										<div className="flex-1">
+											<div className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
+												{accentLabel}
+											</div>
+											<h3 className="mt-3 text-2xl font-bold text-gray-900">
+												{title}
+											</h3>
+											<p className="mt-2 text-sm text-gray-700 font-medium sm:h-10 line-clamp-2">
+												{description}
+											</p>
+										</div>
+										<div className="text-center sm:text-right bg-primary-50/80 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
+											<span className="text-xs uppercase tracking-wider text-gray-600 font-semibold block">
+												{t("prices.pricePerNight")}
+											</span>
+											<p className="text-lg font-semibold text-primary-700">
+												{basePrice}
+											</p>
+										</div>
+									</div>
 
-                  <dl className="mt-6 space-y-2.5">
-                    {room.prices.map((price) => (
-                      <div
-                        key={`${room.type}-${price.guests}`}
-                        className="flex items-center justify-between rounded-xl border border-primary-100/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-all duration-300"
-                      >
-                        <dt className="text-sm font-semibold text-gray-700">
-                          {price.guests}
-                        </dt>
-                        <dd className="flex items-baseline">
-                          <span className="text-lg sm:text-xl font-bold text-primary-700">
-                            {formatAmount.format(price.amount)}
-                          </span>
-                          <span className="ml-1 text-xs font-medium text-gray-600 self-start mt-1">
-                            {t("prices.currency")}
-                          </span>
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
+									<dl className="mt-6 space-y-2.5">
+										{room.prices.map(price => (
+											<div
+												key={`${room.type}-${price.guests}`}
+												className="flex items-center justify-between rounded-xl border border-primary-100/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-all duration-300"
+											>
+												<dt className="text-sm font-semibold text-gray-700">
+													{price.guests}
+												</dt>
+												<dd className="flex items-baseline">
+													<span className="text-lg sm:text-xl font-bold text-primary-700">
+														{formatAmount.format(price.amount)}
+													</span>
+													<span className="ml-1 text-xs font-medium text-gray-600 self-start mt-1">
+														{t("prices.currency")}
+													</span>
+												</dd>
+											</div>
+										))}
+									</dl>
 
-                  <div className="mt-6 flex flex-wrap justify-center gap-2 min-h-[32px]">
-                    {room.amenities.map((amenityKey) => {
-                      const Icon = amenityIconMap[amenityKey];
-                      return (
-                        <span
-                          key={amenityKey}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold text-primary-700 border border-primary-100/50 shadow-sm"
-                        >
-                          {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
-                          {t(amenityKey)}
-                        </span>
-                      );
-                    })}
-                  </div>
+									<div className="mt-6 flex flex-wrap justify-center gap-2 min-h-[32px]">
+										{room.amenities.map(amenityKey => {
+											const Icon = amenityIconMap[amenityKey];
+											return (
+												<span
+													key={amenityKey}
+													className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold text-primary-700 border border-primary-100/50 shadow-sm"
+												>
+													{Icon ? (
+														<Icon
+															className="h-3.5 w-3.5"
+															aria-hidden="true"
+														/>
+													) : null}
+													{t(amenityKey)}
+												</span>
+											);
+										})}
+									</div>
 
-                  <div className="mt-auto pt-6 text-center">
-                    <a
-                      href="https://booking-universitycentre.otelms.com/booking/rooms/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:max-w-[180px]"
-                    >
-                      {t("rooms.bookNow")}
-                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+									<div className="mt-auto pt-6 text-center">
+										<a
+											href="https://booking-universitycentre.otelms.com/booking/rooms/"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:max-w-[180px]"
+										>
+											{t("rooms.bookNow")}
+											<ArrowUpRight
+												className="h-4 w-4"
+												aria-hidden="true"
+											/>
+										</a>
+									</div>
+								</div>
+							</article>
+						);
+					})}
+				</div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {callouts.map(({ icon: Icon, title, accent }, index) => (
-            <div
-              key={`${title}-${index}`}
-              className="relative overflow-hidden rounded-2xl border border-primary-100/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="mb-4 inline-flex items-center gap-3 text-primary-600">
-                <span className="rounded-xl bg-primary-50/80 p-3">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-              </div>
-              <p className="text-sm text-gray-700 font-medium leading-relaxed">{title}</p>
-              {accent && (
-                <p className="mt-3 text-xl font-semibold text-primary-700">
-                  {accent}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
+				<div className="mt-12 grid gap-6 md:grid-cols-3">
+					{callouts.map(({ icon: Icon, title, accent }, index) => (
+						<div
+							key={`${title}-${index}`}
+							className="relative overflow-hidden rounded-2xl border border-primary-100/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+						>
+							<div className="mb-4 inline-flex items-center gap-3 text-primary-600">
+								<span className="rounded-xl bg-primary-50/80 p-3">
+									<Icon
+										className="h-5 w-5"
+										aria-hidden="true"
+									/>
+								</span>
+							</div>
+							<p className="text-sm text-gray-700 font-medium leading-relaxed whitespace-pre-line">
+								{title}
+							</p>
+							{accent && (
+								<p className="mt-3 text-xl font-semibold text-primary-700">
+									{accent}
+								</p>
+							)}
+						</div>
+					))}
+				</div>
 
-        <div className="mt-10 text-center">
-          <a
-            href="https://booking-universitycentre.otelms.com/booking/rooms/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
-          >
-            {t("booking.title")}
-            <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
+				<div className="mt-10 text-center">
+					<a
+						href="https://booking-universitycentre.otelms.com/booking/rooms/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+					>
+						{t("booking.title")}
+						<ArrowUpRight
+							className="h-5 w-5"
+							aria-hidden="true"
+						/>
+					</a>
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default PriceList;

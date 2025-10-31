@@ -57,7 +57,7 @@ const Location = () => {
       <section id="info" className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-700 mb-12 text-center tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-12 text-center">
             {t('info.findUs')}
           </h2>
 
@@ -74,15 +74,34 @@ const Location = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-base text-gray-700 font-medium bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-primary-100/50 shadow-sm">
-                {t('info.description.welcome')}{' '}
-                <span className="font-bold text-primary-600">UCU Inn</span>{' '}
-                — {t('info.description.location')}
-              </p>
+              <div className="text-lg text-gray-700 leading-relaxed bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-primary-100/50 shadow-sm space-y-4">
+                <p>
+                  {t('info.description.welcome')}{' '}
+                  <span className="font-bold text-primary-700">UCU Inn</span>{' '}
+                  — {t('info.description.location')}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-primary-50 to-primary-100/50 border-l-4 border-primary-600 rounded-lg shadow-sm">
+                    <span className="text-2xl">🕐</span>
+                    <div>
+                      <strong className="text-primary-800 font-bold text-base block">Check-in:</strong>
+                      <span className="text-primary-900 font-semibold text-lg">{t('info.description.checkInTime')}</span>
+                    </div>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-primary-50 to-primary-100/50 border-l-4 border-primary-600 rounded-lg shadow-sm">
+                    <span className="text-2xl">🕐</span>
+                    <div>
+                      <strong className="text-primary-800 font-bold text-base block">Check-out:</strong>
+                      <span className="text-primary-900 font-semibold text-lg">{t('info.description.checkOutTime')}</span>
+                    </div>
+                  </div>
+                </div>
+                <p>{t('info.description.additionalInfo')}</p>
+              </div>
             </div>
 
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
-              <h3 className="font-bold text-xl sm:text-2xl text-gray-900 mb-6">
+              <h3 className="font-bold text-2xl sm:text-3xl text-gray-900 mb-8">
                 {t('info.description.whyChoose')}
               </h3>
               <ul className="space-y-6">
@@ -90,10 +109,10 @@ const Location = () => {
                   <li key={item} className="flex gap-4">
                     <div className="w-1 flex-shrink-0 bg-primary-600 rounded-full"></div>
                     <div>
-                      <p className="font-bold text-primary-700 mb-1 text-sm sm:text-base">
+                      <p className="font-bold text-primary-700 mb-2 text-base sm:text-lg">
                         {t(`info.description.${item}.title`)}
                       </p>
-                      <p className="text-gray-700 font-medium text-sm">
+                      <p className="text-gray-600 leading-relaxed text-base">
                         {t(`info.description.${item}.text`)}
                       </p>
                     </div>
@@ -109,14 +128,14 @@ const Location = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50/20 via-white to-white" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary-700 mb-4 tracking-tight">
+            <h3 className="text-3xl md:text-4xl font-bold text-primary-800 mb-6">
               {t('info.location.title')}
             </h3>
-            <p className="text-base sm:text-lg text-gray-700 font-semibold flex items-center justify-center gap-2">
+            <p className="text-lg sm:text-xl text-gray-800 font-semibold flex items-center justify-center gap-2">
               <MapPin className="w-6 h-6 text-primary-700" />
               {t('info.location.address')}
             </p>
-            <p className="text-base text-gray-700 font-medium mt-2">
+            <p className="text-base text-gray-600 mt-3 leading-relaxed whitespace-pre-line">
               {t('info.location.reception')}
             </p>
           </div>

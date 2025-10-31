@@ -1,55 +1,58 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 interface LazySectionProps {
-  id?: string;
-  children: ReactNode;
-  fallback: ReactNode;
-  rootMargin?: string;
+	id?: string;
+	children: ReactNode;
+	fallback: ReactNode;
+	rootMargin?: string;
 }
 
-const LazySection = ({ id, children, fallback, rootMargin = '200px' }: LazySectionProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+const LazySection = ({ id, children, fallback, rootMargin = "200px" }: LazySectionProps) => {
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const [isVisible, setIsVisible] = useState(false);
 
-  const margin = useMemo(() => rootMargin, [rootMargin]);
+	const margin = useMemo(() => rootMargin, [rootMargin]);
 
-  useEffect(() => {
-    if (isVisible) {
-      return;
-    }
+	useEffect(() => {
+		if (isVisible) {
+			return;
+		}
 
-    const node = containerRef.current;
-    if (!node) {
-      return;
-    }
+		const node = containerRef.current;
+		if (!node) {
+			return;
+		}
 
-    if (typeof IntersectionObserver === 'undefined') {
-      setIsVisible(true);
-      return;
-    }
+		if (typeof IntersectionObserver === "undefined") {
+			setIsVisible(true);
+			return;
+		}
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: margin }
-    );
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						setIsVisible(true);
+						observer.disconnect();
+					}
+				});
+			},
+			{ rootMargin: margin },
+		);
 
-    observer.observe(node);
+		observer.observe(node);
 
-    return () => observer.disconnect();
-  }, [isVisible, margin]);
+		return () => observer.disconnect();
+	}, [isVisible, margin]);
 
-  return (
-    <div ref={containerRef} id={!isVisible ? id : undefined}>
-      {isVisible ? children : fallback}
-    </div>
-  );
+	return (
+		<div
+			ref={containerRef}
+			id={!isVisible && id ? id : undefined}
+		>
+			{isVisible ? children : fallback}
+		</div>
+	);
 };
 
 export default LazySection;
