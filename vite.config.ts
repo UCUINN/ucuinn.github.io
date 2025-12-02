@@ -1,6 +1,22 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import type { PluginOption } from 'vite';
+import clickToComponent from 'vite-plugin-react-click-to-component';
+
+const reloadTranslations = (): PluginOption => ({
+  name: 'reload-translation-files',
+  configureServer(server) {
+    const localesDir = `${server.config.root}/public/locales`;
+    server.watcher.add(localesDir);
+    server.watcher.on('change', (filePath) => {
+      if (filePath.includes('public/locales') && filePath.endsWith('.json')) {
+        server.config.logger.info(`translation updated: ${filePath}`);
+        server.ws.send({ type: 'full-reload' });
+      }
+    });
+  },
+});
 
 export default defineConfig({
   base: '/',
@@ -12,6 +28,10 @@ export default defineConfig({
         ]
       }
     }),
+    clickToComponent({
+      editor: 'vscode-remote://wsl+Ubuntu/home/ubuntuvm/Projects/ucu-inn/'
+    }),
+    reloadTranslations(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'img/*.png', 'img/*.svg'],
@@ -135,5 +155,13 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
-  }
+  },
+  server: {
+    watch: {
+      usePolling: true, // Needed for WSL/Docker
+      interval: 100,
+      binaryInterval: 300,
+    },
+    host: true, // Listen on all addresses
+  },
 });

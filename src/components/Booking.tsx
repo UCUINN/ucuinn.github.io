@@ -1,21 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Star, ChevronUp, ChevronDown, Loader2 } from 'lucide-react';
+import { Star, ChevronDown, Loader2 } from 'lucide-react';
 
 function Booking() {
   const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const iframe = iframeRef.current;
     const handleLoad = () => {
-      // Плавне приховання лоадера
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 300);
+      setTimeout(() => setIsLoading(false), 300);
     };
     
     if (iframe) {
@@ -26,58 +22,40 @@ function Booking() {
   }, []);
 
   return (
-    <section 
-      className="relative py-20 overflow-hidden"
-      ref={containerRef}
-    >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-primary-100/50 shadow-lg overflow-hidden">
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <button
             onClick={() => setIsExpanded(prev => !prev)}
-            className="w-full flex items-center justify-between p-6 bg-primary-50/80 hover:bg-primary-100/60 transition-colors duration-300"
+            className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors"
             aria-expanded={isExpanded}
           >
-            <div className="flex items-center space-x-4">
-              <div className="bg-primary-600 rounded-full p-2">
-                <Star className="h-6 w-6 text-white" />
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center">
+                <Star className="w-4 h-4 text-white" />
               </div>
               <div className="text-left">
-                <h3 className="text-xl font-bold text-gray-900">{t('info.description.welcome')} Booking.com</h3>
-                <p className="text-sm text-gray-700 mt-1">{t('reviews.subtitle')}</p>
+                <h3 className="font-semibold text-gray-900">{t('info.description.welcome')} Booking.com</h3>
+                <p className="text-sm text-gray-500 mt-0.5">{t('reviews.subtitle')}</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-sm font-medium text-gray-700">
-                {isExpanded ? t('reviews.collapse') : t('reviews.expand')}
-              </span>
-              {isExpanded ? (
-                <ChevronUp className="h-5 w-5 text-primary-600" />
-              ) : (
-                <ChevronDown className="h-5 w-5 text-primary-600" />
-              )}
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <span>{isExpanded ? t('reviews.collapse') : t('reviews.expand')}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
             </div>
           </button>
           
           <div 
-            className={`transform transition-all duration-300 ease-in-out ${
-              isExpanded ? 'h-[75vh]' : 'h-0'
-            } overflow-hidden`}
-            style={{ 
-              willChange: 'height',
-              containIntrinsicSize: '0 75vh'
-            }}
+            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+              isExpanded ? 'h-[70vh]' : 'h-0'
+            }`}
           >
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full border-t border-gray-100">
               {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-10">
-                  <div className="text-center space-y-4">
-                    <div className="relative">
-                      <Loader2 className="w-10 h-10 animate-spin text-primary-600 mx-auto" />
-                      <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-white to-transparent" />
-                    </div>
-                    <p className="text-gray-700 font-medium">{t('reviews.loading.message')}</p>
-                    <p className="text-sm text-gray-600">{t('reviews.loading.note')}</p>
+                <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                  <div className="text-center">
+                    <Loader2 className="w-6 h-6 animate-spin text-gray-400 mx-auto mb-3" />
+                    <p className="text-sm text-gray-500">{t('reviews.loading.message')}</p>
                   </div>
                 </div>
               )}

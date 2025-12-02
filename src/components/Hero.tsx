@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Calendar, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { fadeInUpVariant, staggerContainer } from "../utils/ui";
 import heroBg from "../img/rec3pic.webp";
 
@@ -29,9 +29,10 @@ export const Hero = () => {
 						height={1080}
 						loading="eager"
 						decoding="async"
-						className="absolute inset-0 w-full h-full object-cover brightness-[0.4] transition-all will-change-transform"
+						className="absolute inset-0 w-full h-full object-cover brightness-[0.4] object-right transition-all will-change-transform"
 					/>
-					<div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
+					<div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+					<div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
 				</div>
 			</motion.div>
 
@@ -41,11 +42,11 @@ export const Hero = () => {
 				initial="hidden"
 				animate="visible"
 				style={{ opacity, y: textY }}
-				className="relative z-10 text-left text-white px-4 max-w-7xl mx-auto w-full flex flex-col will-change-transform"
+				className="relative z-10 text-left text-white px-4 md:px-8 max-w-5xl mx-auto w-full flex flex-col will-change-transform"
 			>
 				<motion.h1
 					variants={fadeInUpVariant}
-					className="text-6xl md:text-8xl font-extrabold mb-10 tracking-tight drop-shadow-2xl will-change-transform"
+					className="text-6xl md:text-8xl font-extrabold mb-4 tracking-tight drop-shadow-2xl will-change-transform"
 				>
 					<span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/95 to-white/90 font-display">
 						UCU INN
@@ -54,14 +55,21 @@ export const Hero = () => {
 
 				<motion.div
 					variants={fadeInUpVariant}
-					className="flex flex-col items-start gap-6 mb-14"
+					className="flex flex-col items-start gap-4 mb-12"
 				>
-					<p className="text-xl md:text-3xl font-normal leading-relaxed drop-shadow-lg max-w-2xl">
+					<p className="text-xl md:text-2xl font-light leading-relaxed text-white/90 max-w-xl mb-2">
 						{t("hero.description")}
 					</p>
-					<p className="text-lg md:text-xl text-white/90 drop-shadow-lg max-w-xl font-medium whitespace-pre-line">
-						{t("hero.location")}
-					</p>
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-base text-white/80 font-light">
+						{t("hero.subtitle").split(' • ').map((item, index) => (
+							<div
+								key={index}
+								className="flex items-center gap-2"
+							>
+								{item.trim()}
+							</div>
+						))}
+					</div>
 				</motion.div>
 
 				<motion.div
@@ -72,16 +80,21 @@ export const Hero = () => {
 						href="https://booking-universitycentre.otelms.com/booking/rooms/en"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center justify-center gap-3 bg-primary-600 text-white px-9 py-4 rounded-xl hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-base font-semibold"
+						className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full hover:bg-white/90 transition-all duration-300 text-sm font-medium tracking-wide"
 					>
-						<Calendar className="w-5 h-5 transition-transform group-hover:rotate-12" />
-						<span>{t("hero.bookNow")}</span>
+						{t("hero.bookNow")}
+						<svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+						</svg>
 					</a>
 					<a
-						href="#gallery"
-						className="group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-9 py-4 rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/30 transform hover:scale-105 hover:shadow-2xl shadow-lg text-base font-semibold"
+						href="#rooms"
+						className="inline-flex items-center justify-center gap-2 text-white border border-white/30 px-6 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-gray-900 hover:border-white rounded-full"
 					>
-						<span>{t("hero.viewRooms")}</span>
+						{t("hero.viewRooms")}
+						<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+						</svg>
 					</a>
 				</motion.div>
 			</motion.div>

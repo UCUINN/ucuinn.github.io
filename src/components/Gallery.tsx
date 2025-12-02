@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { useTranslation } from "react-i18next";
-import { ImagePlus } from "lucide-react";
+import { ImagePlus, ZoomIn } from "lucide-react";
 import rec3 from "../img/rec3pic.webp";
 import rec4 from "../img/rec4pic.webp";
 import rec5 from "../img/rec5pic.webp";
@@ -131,18 +131,18 @@ function Gallery() {
       className="relative overflow-hidden py-20"
       aria-labelledby="gallery-heading"
     >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/30 to-white" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2
             id="gallery-heading"
-            className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
+            className="text-3xl md:text-4xl font-bold tracking-tight text-gray-700"
           >
             {t("gallery.title")}
           </h2>
         </div>
 
-        <div className="gallery-container mt-12 rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden">
+        <div className="gallery-container mt-12 rounded-3xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden">
           <div className="relative aspect-[16/11] md:aspect-video overflow-hidden">
             <Swiper
               modules={[Navigation, Pagination, Keyboard, EffectFade, Autoplay]}
@@ -169,7 +169,6 @@ function Gallery() {
                     onClick={() => handleOpenLightbox(index)}
                     aria-label={`View ${image.caption} in fullscreen`}
                   >
-                    <span className="sr-only">Click to enlarge</span>
                     <div className="relative h-full w-full">
                       <img
                         src={image.src}
@@ -179,10 +178,13 @@ function Gallery() {
                         height="600"
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
                       />
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent px-6 pb-6 pt-16 text-left">
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent px-6 pb-6 pt-16 text-left flex items-end justify-between">
                         <p className="text-sm font-semibold text-white md:text-base">
                           {image.caption}
                         </p>
+                        <span className="bg-white/20 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <ZoomIn className="w-5 h-5 text-white" aria-hidden="true" />
+                        </span>
                       </div>
                     </div>
                   </button>

@@ -9,11 +9,21 @@ i18n
     lng: 'ua',
     fallbackLng: 'en',
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json?v=' + Date.now(),
+      requestOptions: {
+        cache: 'no-store',
+      },
     },
     interpolation: {
       escapeValue: false,
     },
   });
+
+// Force reload on hot reload
+if (import.meta.hot) {
+  import.meta.hot.accept(() => {
+    i18n.reloadResources();
+  });
+}
 
 export default i18n;

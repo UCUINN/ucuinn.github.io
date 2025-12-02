@@ -60,12 +60,12 @@ const Room = () => {
 			className="relative overflow-hidden py-20"
 			aria-labelledby="rooms-heading"
 		>
-			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/30 to-white" />
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="max-w-3xl mx-auto text-center mb-4">
 					<h2
 						id="rooms-heading"
-						className="text-4xl md:text-5xl font-bold text-primary-800 mb-5"
+						className="text-4xl md:text-5xl font-bold text-gray-800 mb-5"
 					>
 						{t("rooms.sectionTitle")}
 					</h2>
@@ -78,8 +78,8 @@ const Room = () => {
 					{rooms.map(room => (
 						<article
 							key={room.id}
-							className={`group relative overflow-hidden rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
-								room.highlight ? "ring-2 ring-primary-200/50" : ""
+							className={`group relative overflow-hidden rounded-3xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+								room.highlight ? "ring-2 ring-gray-300/50" : ""
 							}`}
 						>
 							<div className="relative h-56 sm:h-64 overflow-hidden">
@@ -93,7 +93,7 @@ const Room = () => {
 									className="h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
 								/>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-								<span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-700 shadow-md">
+								<span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 shadow-md">
 									{room.accent}
 								</span>
 							</div>
@@ -108,12 +108,12 @@ const Room = () => {
 									</p>
 								</div>
 
-								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-primary-100/50 bg-white/90 px-5 sm:px-6 py-4 shadow-sm">
+								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-gray-200/50 bg-white/90 px-5 sm:px-6 py-4 shadow-sm">
 									<div className="text-center sm:text-left">
 										<span className="text-xs uppercase tracking-wide text-gray-500 font-semibold block mb-1">
 											{t("prices.pricePerNight")}
 										</span>
-										<p className="text-xl sm:text-2xl font-bold text-primary-700">
+										<p className="text-xl sm:text-2xl font-bold text-gray-800">
 											{room.priceLabel}
 										</p>
 									</div>
@@ -121,7 +121,7 @@ const Room = () => {
 										href="https://booking-universitycentre.otelms.com/booking/rooms/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto"
+										className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto"
 									>
 										{t("rooms.bookNow")}
 										<ArrowUpRight
@@ -137,7 +137,7 @@ const Room = () => {
 										return (
 											<span
 												key={amenityKey}
-												className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-4 py-2 text-sm font-medium text-primary-700 border border-primary-100/50 shadow-sm"
+												className="inline-flex items-center gap-2 rounded-full bg-gray-50/80 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-200/50 shadow-sm"
 											>
 												{Icon ? (
 													<Icon

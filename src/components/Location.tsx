@@ -55,15 +55,15 @@ const Location = () => {
   return (
     <>
       <section id="info" className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/30 to-white" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 text-center">
             {t('info.findUs')}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div className="space-y-6">
-              <div className="aspect-video relative overflow-hidden rounded-2xl border border-primary-100/50 shadow-sm">
+              <div className="aspect-video relative overflow-hidden rounded-2xl border border-gray-200/50 shadow-sm">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -74,25 +74,25 @@ const Location = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="text-lg text-gray-700 leading-relaxed bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-primary-100/50 shadow-sm space-y-4">
+              <div className="text-lg text-gray-700 leading-relaxed bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-gray-200/50 shadow-sm space-y-4">
                 <p>
                   {t('info.description.welcome')}{' '}
-                  <span className="font-bold text-primary-700">UCU Inn</span>{' '}
+                  <span className="font-bold text-gray-700">UCU Inn</span>{' '}
                   — {t('info.description.location')}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-primary-50 to-primary-100/50 border-l-4 border-primary-600 rounded-lg shadow-sm">
+                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-gray-50 to-gray-100/50 border-l-4 border-gray-600 rounded-lg shadow-sm">
                     <span className="text-2xl">🕐</span>
                     <div>
-                      <strong className="text-primary-800 font-bold text-base block">Check-in:</strong>
-                      <span className="text-primary-900 font-semibold text-lg">{t('info.description.checkInTime')}</span>
+                      <strong className="text-gray-800 font-bold text-base block">Check-in:</strong>
+                      <span className="text-gray-900 font-semibold text-lg">{t('info.description.checkInTime')}</span>
                     </div>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-primary-50 to-primary-100/50 border-l-4 border-primary-600 rounded-lg shadow-sm">
+                  <div className="inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-gray-50 to-gray-100/50 border-l-4 border-gray-600 rounded-lg shadow-sm">
                     <span className="text-2xl">🕐</span>
                     <div>
-                      <strong className="text-primary-800 font-bold text-base block">Check-out:</strong>
-                      <span className="text-primary-900 font-semibold text-lg">{t('info.description.checkOutTime')}</span>
+                      <strong className="text-gray-800 font-bold text-base block">Check-out:</strong>
+                      <span className="text-gray-900 font-semibold text-lg">{t('info.description.checkOutTime')}</span>
                     </div>
                   </div>
                 </div>
@@ -100,16 +100,16 @@ const Location = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200/50 shadow-sm">
               <h3 className="font-bold text-2xl sm:text-3xl text-gray-900 mb-8">
                 {t('info.description.whyChoose')}
               </h3>
               <ul className="space-y-6">
                 {['amenities', 'comfort', 'dining', 'activities'].map((item) => (
                   <li key={item} className="flex gap-4">
-                    <div className="w-1 flex-shrink-0 bg-primary-600 rounded-full"></div>
+                    <div className="w-1 flex-shrink-0 bg-gray-400 rounded-full"></div>
                     <div>
-                      <p className="font-bold text-primary-700 mb-2 text-base sm:text-lg">
+                      <p className="font-bold text-gray-800 mb-2 text-base sm:text-lg">
                         {t(`info.description.${item}.title`)}
                       </p>
                       <p className="text-gray-600 leading-relaxed text-base">
@@ -125,14 +125,14 @@ const Location = () => {
       </section>
 
       <section id="location" className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50/20 via-white to-white" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50/20 via-white to-white" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-primary-800 mb-6">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               {t('info.location.title')}
             </h3>
             <p className="text-lg sm:text-xl text-gray-800 font-semibold flex items-center justify-center gap-2">
-              <MapPin className="w-6 h-6 text-primary-700" />
+              <MapPin className="w-6 h-6 text-gray-600" />
               {t('info.location.address')}
             </p>
             <p className="text-base text-gray-600 mt-3 leading-relaxed whitespace-pre-line">
@@ -140,7 +140,7 @@ const Location = () => {
             </p>
           </div>
 
-          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-primary-100/50 shadow-lg">
+          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-gray-200/50 shadow-lg">
             <div ref={mapContainerRef} className="w-full h-full" aria-live="polite">
               {shouldLoadMap ? (
                 <iframe

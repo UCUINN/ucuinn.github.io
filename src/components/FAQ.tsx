@@ -133,10 +133,10 @@ function FAQ() {
 			id="faq"
 			className="relative py-20 overflow-hidden"
 		>
-			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/30 to-white" />
 			<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-12">
-					<h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-5">
+					<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-5">
 						{t(
 							"faq.title",
 							langKey === "en"
@@ -172,7 +172,7 @@ function FAQ() {
 							type="text"
 							value={query}
 							onChange={e => setQuery(e.target.value)}
-							className="w-full rounded-xl border border-primary-100/50 bg-white/90 backdrop-blur-sm px-4 py-3 pr-10 text-gray-700 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-300"
+							className="w-full rounded-xl border border-gray-200/50 bg-white/90 backdrop-blur-sm px-4 py-3 pr-10 text-gray-700 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
 							placeholder={t(
 								"faq.searchPlaceholder",
 								langKey === "en"
@@ -201,12 +201,13 @@ function FAQ() {
 					return (
 						<div
 							key={catKey}
-							className="mb-10"
+							className="mb-12 pt-6 first:pt-0 border-t-2 border-gray-200/50 first:border-t-0"
 						>
-							<h3 className="text-xl sm:text-2xl font-bold text-primary-800 mb-5">
+							<h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+								<span className="w-1.5 h-8 bg-gray-400 rounded-full" />
 								{t(`faq.categories.${catKey}`)}
 							</h3>
-							<div className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-primary-100/50">
+							<div className="divide-y divide-gray-200 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/50">
 								{group.map((item, idx) => {
 									const open = openId === item.q;
 									return (
@@ -216,14 +217,14 @@ function FAQ() {
 										>
 											<button
 												onClick={() => setOpenId(open ? null : item.q)}
-												className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-primary-50/60 transition-colors"
+												className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-gray-50/60 transition-colors"
 												aria-expanded={open}
 												aria-controls={`faq-answer-${idx}`}
 											>
 												<span className="text-lg md:text-xl font-semibold text-gray-900">
 													{item.q}
 												</span>
-												<span className="text-primary-600 group-hover:text-primary-700">
+												<span className="text-gray-500 group-hover:text-gray-700">
 													<Chevron open={open} />
 												</span>
 											</button>

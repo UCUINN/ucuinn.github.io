@@ -1,63 +1,34 @@
-import React, { memo, useState } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Phone, Mail, Facebook, Instagram, MessageCircle, Accessibility } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, MessageSquare, Accessibility, Facebook, Instagram } from 'lucide-react';
 import { CONTACT_INFO, MESSENGER_LINKS } from '../config/contact';
 
-interface SocialLinkProps {
-  href: string;
-  icon: LucideIcon;
-  children: React.ReactNode;
-  ariaLabel?: string;
-}
-
-const SocialLink = memo(({ href, icon: Icon, children, ariaLabel }: SocialLinkProps) => {
-  const [isError, setIsError] = useState(false);
-
-  if (isError) {
-    return null;
-  }
-
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={ariaLabel || `${children} link`}
-      className="flex items-center gap-3 text-gray-800 hover:text-primary-700 bg-primary-50 px-5 py-2.5 rounded-full transition-transform transform hover:scale-105"
-      onClick={(e) => {
-        try {
-          if (!href) {
-            e.preventDefault();
-            setIsError(true);
-          }
-        } catch {
-          e.preventDefault();
-          setIsError(true);
-        }
-      }}
-    >
-      <Icon size={20} aria-hidden="true" />
-      <span className="font-semibold text-base">{children}</span>
-    </a>
-  );
-});
-
-SocialLink.displayName = 'SocialLink';
-
-interface ContactSectionProps {
-  title: string;
-  children: React.ReactNode;
-}
-
-const ContactSection = ({ title, children }: ContactSectionProps) => (
-  <div className="space-y-4" role="region" aria-label={title}>
-    <h3 className="font-bold text-xl md:text-2xl text-gray-900">
-      {title}
-    </h3>
-    {children}
-  </div>
+// Messenger icons (outline style)
+const ViberIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M12 3c4.97 0 9 3.185 9 7.5 0 2.67-1.5 5.03-3.84 6.54l.84 3.96-4.2-2.1c-.6.06-1.2.1-1.8.1-4.97 0-9-3.185-9-7.5S7.03 3 12 3z"/>
+    <path d="M9.5 8.5c0-.5.5-1 1-1h3c.5 0 1 .5 1 1v3c0 .5-.5 1-1 1h-3c-.5 0-1-.5-1-1v-3z" strokeLinecap="round"/>
+  </svg>
 );
+
+const WhatsAppIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1zm0 0a5 5 0 0 0 5 5m0 0a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1h1z"/>
+  </svg>
+);
+
+const TelegramIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const messengerIcons: Record<string, React.FC> = {
+  Viber: ViberIcon,
+  WhatsApp: WhatsAppIcon,
+  Telegram: TelegramIcon,
+};
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -65,85 +36,111 @@ const Contact = () => {
   return (
     <section 
       id="contacts" 
-      className="relative py-20 overflow-hidden"
+      className="py-16 bg-gray-50"
       aria-label={t('contact.title')}
     >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-50 via-primary-100/40 to-white" />
-      <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-primary-300/30 blur-3xl" />
-      <div className="absolute -left-40 -bottom-40 h-96 w-96 rounded-full bg-primary-200/30 blur-3xl" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-800">
-            {t('contact.title')}
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="max-w-4xl mx-auto px-6">
+        {/* Header */}
+        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-12">
+          {t('contact.title')}
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* Left Column - Contact Info */}
           <div className="space-y-8">
-            <ContactSection title={t('booking.phone.title')}>
-              <a
+            {/* Phone */}
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-medium">{t('booking.phone.title')}</p>
+              <a 
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center gap-4 text-gray-800 hover:text-primary-700 transition-transform transform hover:scale-105"
-                aria-label={t('booking.phone.call')}
+                className="flex items-center gap-3 text-gray-900 hover:text-gray-600 transition-colors"
               >
-                <div className="bg-primary-100 p-3 rounded-full">
-                  <Phone className="text-primary-600 h-6 w-6" aria-hidden="true" />
-                </div>
-                <span className="text-xl font-bold">{CONTACT_INFO.phone}</span>
+                <Phone className="w-4 h-4 text-gray-400" />
+                <span className="text-lg font-medium">{CONTACT_INFO.phone}</span>
               </a>
-              <div className="text-gray-500 text-base font-medium" aria-label={t('booking.phone.extension')}>
-                #{t('booking.phone.extension')}
-              </div>
-              <div className="flex flex-wrap gap-4 mt-4">
-                {MESSENGER_LINKS.map(({ name, url }) => (
-                  <SocialLink 
-                    key={name} 
-              href={url} 
-                    icon={MessageCircle}
-                    ariaLabel={`${t('contact.messenger.contact')} ${name}`}
-                  >
-                    {name}
-                  </SocialLink>
-                ))}
-              </div>
-            </ContactSection>
-
-            <ContactSection title={t('booking.email.title')}>
-              <a
-                href={`mailto:${CONTACT_INFO.email}`}
-                className="flex items-center gap-4 text-gray-800 hover:text-primary-700 transition-transform transform hover:scale-105"
-                aria-label={t('booking.email.send')}
-              >
-                <div className="bg-primary-100 p-3 rounded-full">
-                  <Mail className="text-primary-600 h-6 w-6" aria-hidden="true" />
-                </div>
-                <span className="text-lg font-semibold leading-relaxed">
-                  {CONTACT_INFO.email}
+              <p className="text-sm text-gray-500 mt-1 ml-7">#{t('booking.phone.extension')}</p>
+              
+              {/* Reception info */}
+              <div className="flex flex-wrap gap-4 mt-3 ml-7 text-sm text-gray-500">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5" />
+                  {t('contact.receptionHours')}
                 </span>
-              </a>
-            </ContactSection>
-
-            <ContactSection title={t('social.title')}>
-              <div className="flex flex-wrap gap-4">
-                <SocialLink href={CONTACT_INFO.facebook} icon={Facebook} ariaLabel={t('social.facebook')}>
-                  Facebook
-                </SocialLink>
-                <SocialLink href={CONTACT_INFO.instagram} icon={Instagram} ariaLabel={t('social.instagram')}>
-                  Instagram
-                </SocialLink>
+                <span className="flex items-center gap-1.5">
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  {t('contact.responseTime')}
+                </span>
               </div>
-            </ContactSection>
-            <div className="p-6 bg-cream border border-primary-100/50 rounded-2xl shadow-sm flex items-center backdrop-blur-sm">
-              <div className="flex items-center gap-3 w-full">
-                <div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
-                  <Accessibility className="w-5 h-5 text-blue-700" />
-                </div>
-                <p className="text-gray-800">
+
+              {/* Messengers */}
+              <div className="flex flex-wrap gap-2 mt-4 ml-7">
+                {MESSENGER_LINKS.map(({ name, url }) => {
+                  const Icon = messengerIcons[name];
+                  return (
+                    <a
+                      key={name}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-100 transition-colors"
+                    >
+                      {Icon && <Icon />}
+                      {name}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Email */}
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-medium">{t('booking.email.title')}</p>
+              <a 
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="flex items-center gap-3 text-gray-900 hover:text-gray-600 transition-colors"
+              >
+                <Mail className="w-4 h-4 text-gray-400" />
+                <span className="font-medium">{CONTACT_INFO.email}</span>
+              </a>
+            </div>
+
+            {/* Social */}
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-medium">{t('social.title')}</p>
+              <div className="flex gap-3 ml-7">
+                <a
+                  href={CONTACT_INFO.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors"
+                >
+                  <Facebook className="w-4 h-4" />
+                  Facebook
+                </a>
+                <span className="text-gray-300">·</span>
+                <a
+                  href={CONTACT_INFO.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors"
+                >
+                  <Instagram className="w-4 h-4" />
+                  Instagram
+                </a>
+              </div>
+            </div>
+
+            {/* Accessibility */}
+            <div className="p-4 bg-white border border-gray-200 rounded-lg">
+              <div className="flex items-start gap-3">
+                <Accessibility className="w-5 h-5 text-gray-400 mt-0.5" />
+                <p className="text-sm text-gray-600">
                   {t('contact.extraService.textBeforeLink')}{' '}
                   <a
                     href="https://forms.gle/c7hDcvf56s2G1eiQ7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary-600 underline font-semibold"
+                    className="text-gray-900 underline"
                   >
                     {t('contact.extraService.linkText')}
                   </a>.
@@ -152,21 +149,22 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-100/50 shadow-sm">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900">
-              {t('contact.address.title')}
-            </h3>
-            <address className="text-lg text-gray-700 not-italic leading-relaxed">
-              {t('contact.address.street')}<br />
-              {t('contact.address.city')}<br />
-              {t('contact.address.country')}, {t('contact.address.postcode')}
-            </address>
-            <div className="mt-8 text-gray-700">
-              <p className="text-base leading-relaxed">{t('social.regards')}</p>
-              <p className="mt-6 text-primary-800 text-xl font-bold">
-                {t('social.team')}
-              </p>
-              <p className="text-primary-700 font-semibold text-base mt-2">{t('social.signature')}</p>
+          {/* Right Column - Address */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-medium">{t('contact.address.title')}</p>
+            <div className="flex items-start gap-3 mb-6">
+              <MapPin className="w-4 h-4 text-gray-400 mt-1" />
+              <address className="text-gray-900 not-italic leading-relaxed">
+                {t('contact.address.street')}<br />
+                {t('contact.address.city')}<br />
+                {t('contact.address.country')}, {t('contact.address.postcode')}
+              </address>
+            </div>
+            
+            <div className="pt-6 border-t border-gray-100">
+              <p className="text-sm text-gray-600">{t('social.regards')}</p>
+              <p className="text-gray-900 font-medium mt-2">{t('social.team')}</p>
+              <p className="text-sm text-gray-500 mt-1">{t('social.signature')}</p>
             </div>
           </div>
         </div>

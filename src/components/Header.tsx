@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Menu, X, Phone, Accessibility } from "lucide-react";
+import { Menu, X, Phone, Accessibility, Clock } from "lucide-react";
 import { cn } from "../utils/ui";
 import logoEn from "../img/logo_en.svg";
 import logoUa from "../img/logo_ua.svg";
@@ -10,8 +10,27 @@ const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isVisible, setIsVisible] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
+	const [activeSection, setActiveSection] = useState<string>("");
 
-	// Hide/show header on scroll
+	// Track active section based on scroll position
+	const updateActiveSection = useCallback(() => {
+		const sections = ["rooms", "contacts", "gallery", "prices", "location", "faq"];
+		const scrollPosition = window.scrollY + 150;
+
+		for (const section of sections) {
+			const element = document.getElementById(section);
+			if (element) {
+				const { offsetTop, offsetHeight } = element;
+				if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+					setActiveSection(`#${section}`);
+					return;
+				}
+			}
+		}
+		setActiveSection("");
+	}, []);
+
+	// Hide/show header on scroll and track active section
 	useEffect(() => {
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY;
@@ -27,11 +46,12 @@ const Header = () => {
 			}
 
 			setLastScrollY(currentScrollY);
+			updateActiveSection();
 		};
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastScrollY]);
+	}, [lastScrollY, updateActiveSection]);
 
 	// Keyboard navigation: Close menu on Escape
 	useEffect(() => {
@@ -49,7 +69,7 @@ const Header = () => {
 	};
 
 	const navigationItems = [
-		{ href: "#info", label: t("nav.info") },
+		{ href: "#rooms", label: t("nav.info") },
 		{ href: "#contacts", label: t("nav.contacts") },
 		{ href: "#gallery", label: t("nav.gallery") },
 		{ href: "#prices", label: t("nav.prices") },
@@ -64,17 +84,19 @@ const Header = () => {
 		},
 	];
 
+	const isActive = (href: string) => activeSection === href;
+
 	const logoImage = i18n.language === "en" ? logoEn : logoUa;
 
 	return (
 		<header
 			className={cn(
-				"bg-cream/95 backdrop-blur-sm shadow-md fixed top-0 left-0 w-full z-50 transition-all duration-300",
+				"bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-gray-100",
 				isVisible ? "translate-y-0" : "-translate-y-full",
 			)}
 		>
-			<div className="max-w-7xl mx-auto px-4 lg:px-8">
-				<nav className="flex justify-between items-center py-3">
+			<div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+				<nav className="flex justify-between items-center py-4">
 					{/* Logo */}
 					<a
 						href="#"
@@ -97,67 +119,78 @@ const Header = () => {
 								target={item.target}
 								rel={item.rel}
 								className={cn(
-									"px-3 lg:px-4 py-2.5 text-gray-700 text-sm font-semibold rounded-lg transition-all duration-300",
+									"px-3 lg:px-4 py-2 text-sm font-medium transition-all duration-200",
 									item.isHighlighted
-										? "bg-primary-600 text-white hover:bg-primary-700 hover:shadow-md transform hover:-translate-y-0.5"
-										: "hover:text-primary-700 hover:bg-primary-50",
+										? "bg-gray-900 text-white rounded-full hover:bg-gray-800"
+										: isActive(item.href)
+											? "text-gray-900"
+											: "text-gray-500 hover:text-gray-900",
 								)}
 							>
 								{item.label}
+								{isActive(item.href) && !item.isHighlighted && (
+									<span className="block h-0.5 w-full bg-gray-900 mt-0.5 rounded-full" />
+								)}
 							</a>
 						))}
 					</div>
 
 					{/* Desktop Language & Phone */}
-					<div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+					<div className="hidden md:flex items-center space-x-3 lg:space-x-6">
 						{/* Language Switcher */}
-						<div className="flex items-center space-x-2 bg-gray-50 p-1 rounded-lg">
+						<div className="flex items-center bg-transparent p-0 rounded-lg">
 							<button
 								onClick={() => changeLanguage("en")}
 								className={cn(
-									"px-3 py-2 rounded-md text-sm font-semibold transition-all duration-300",
+									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0",
 									i18n.language === "en"
-										? "bg-white text-primary-700 shadow-sm"
+										? "bg-white text-gray-700 shadow-sm"
 										: "text-gray-600 hover:text-gray-900 hover:bg-white/50",
 								)}
 							>
-								🇺🇸 EN
+								<span className="sm:hidden">🇺🇸</span>
+								<span className="hidden sm:inline">🇺🇸 EN</span>
 							</button>
 							<button
 								onClick={() => changeLanguage("ua")}
 								className={cn(
-									"px-3 py-2 rounded-md text-sm font-semibold transition-all duration-300",
+									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0",
 									i18n.language === "ua"
-										? "bg-white text-primary-700 shadow-sm"
+										? "bg-white text-gray-700 shadow-sm"
 										: "text-gray-600 hover:text-gray-900 hover:bg-white/50",
 								)}
 							>
-								🇺🇦 UA
+								<span className="sm:hidden">🇺🇦</span>
+								<span className="hidden sm:inline">🇺🇦 UA</span>
 							</button>
 						</div>
 
-						{/* Contact Phone */}
-						<a
-							href="tel:+380967567206"
-							className="flex items-center space-x-2 text-gray-700 hover:text-primary-700 transition-all duration-300 hover:scale-105"
-						>
-							<div className="bg-primary-50 p-2 rounded-full">
-								<Phone className="w-4 h-4" />
+						{/* Contact Info */}
+						<div className="hidden xl:flex flex-col items-end space-y-0.5">
+							<a
+								href="tel:+380967567206"
+								className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 transition-colors font-medium text-xs"
+							>
+								<Phone className="w-3 h-3 text-gray-400" />
+								<span>096-75-67-206</span>
+							</a>
+							<div className="flex items-center space-x-1 text-gray-400 text-xs">
+								<Clock className="w-2.5 h-2.5" />
+								<span>{t("nav.workingHours")}</span>
 							</div>
-							<span className="text-sm font-semibold">096-75-67-206</span>
-						</a>
+						</div>
 
 						{/* Accessibility Link */}
 						<a
 							href="https://forms.gle/CaMuKHii8wsFkQZy9"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-110"
+							className="flex items-center text-gray-400 hover:text-gray-600 transition-all duration-300 hover:scale-105"
 							title="Request accessibility assistance"
 							aria-label="Request accessibility assistance"
 						>
-							<div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm hover:shadow-md hover:bg-blue-200 transition-all duration-300">
-								<Accessibility className="w-5 h-5 text-blue-700" />
+							<div className="bg-gray-50 p-2 rounded-full border border-gray-200 hover:bg-gray-100 transition-all duration-300">
+								<Accessibility className="w-4 h-4 text-gray-500" />
 							</div>
 						</a>
 					</div>
@@ -176,8 +209,8 @@ const Header = () => {
 
 			{/* Mobile Menu */}
 			{isMenuOpen && (
-				<div className="md:hidden bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100">
-					<div className="px-4 py-6 space-y-3">
+				<div className="md:hidden bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100 overflow-y-auto max-h-[calc(100vh-80px)]">
+					<div className="px-4 py-6 space-y-3 pb-32">
 						{navigationItems.map(item => (
 							<a
 								key={item.href}
@@ -187,8 +220,8 @@ const Header = () => {
 								className={cn(
 									"block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300",
 									item.isHighlighted
-										? "bg-primary-600 text-white shadow-md hover:bg-primary-700 hover:shadow-lg"
-										: "text-gray-700 hover:text-primary-600 hover:bg-primary-50",
+										? "bg-gray-900 text-white shadow-md hover:bg-gray-800 hover:shadow-lg"
+										: "text-gray-700 hover:text-gray-900 hover:bg-gray-50",
 								)}
 								onClick={() => setIsMenuOpen(false)}
 							>
@@ -199,10 +232,10 @@ const Header = () => {
 						{/* Mobile Contact */}
 						<a
 							href="tel:+380967567206"
-							className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all duration-300"
+							className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-all duration-300"
 							onClick={() => setIsMenuOpen(false)}
 						>
-							<div className="bg-primary-50 p-2 rounded-full">
+							<div className="bg-gray-100 p-2 rounded-full">
 								<Phone className="w-5 h-5" />
 							</div>
 							<span className="font-medium">096-75-67-206</span>
@@ -213,14 +246,14 @@ const Header = () => {
 							href="https://forms.gle/CaMuKHii8wsFkQZy9"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-primary-600 hover:bg-blue-100 rounded-xl transition-all duration-300 border border-blue-200 bg-blue-50"
+							className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-300 border border-gray-200 bg-gray-50"
 							onClick={() => setIsMenuOpen(false)}
 							title="Accessibility Service"
 						>
-							<div className="bg-blue-100 p-3 rounded-full border-2 border-blue-200 shadow-sm">
-								<Accessibility className="w-6 h-6 text-blue-700" />
+							<div className="bg-gray-100 p-3 rounded-full border border-gray-200 shadow-sm">
+								<Accessibility className="w-6 h-6 text-gray-600" />
 							</div>
-							<span className="font-semibold text-blue-700">
+							<span className="font-semibold text-gray-700">
 								Accessibility Service
 							</span>
 						</a>
@@ -235,7 +268,7 @@ const Header = () => {
 								className={cn(
 									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300",
 									i18n.language === "en"
-										? "bg-primary-50 text-primary-600 shadow-sm"
+										? "bg-gray-100 text-gray-700 shadow-sm"
 										: "text-gray-700 hover:bg-gray-50",
 								)}
 							>
@@ -249,7 +282,7 @@ const Header = () => {
 								className={cn(
 									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300",
 									i18n.language === "ua"
-										? "bg-primary-50 text-primary-600 shadow-sm"
+										? "bg-gray-100 text-gray-700 shadow-sm"
 										: "text-gray-700 hover:bg-gray-50",
 								)}
 							>

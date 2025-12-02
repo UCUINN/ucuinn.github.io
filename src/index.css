@@ -22,7 +22,7 @@
 
 body {
 	@apply text-gray-900;
-	background-color: #fefaef;
+	background-color: #ffffff;
 	font-family: "Inter", system-ui, -apple-system, sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 	line-height: 1.2;
 	letter-spacing: -0.02em;
-	color: #351a83;
+	color: #1f2937;
 }
 
 h1 {
@@ -150,9 +150,9 @@ img {
 /* Skip to content link for accessibility */
 .skip-to-content {
 	position: absolute;
-	top: -40px;
+	top: -100px;
 	left: 0;
-	background: #6536e3;
+	background: #1f2937;
 	color: white;
 	padding: 8px 16px;
 	text-decoration: none;
@@ -160,10 +160,12 @@ img {
 	z-index: 100;
 	font-weight: 600;
 	transition: top 0.2s;
+	opacity: 0;
 }
 
 .skip-to-content:focus {
 	top: 0;
+	opacity: 1;
 }
 
 /* Toast animation */

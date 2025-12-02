@@ -87,12 +87,12 @@ const PriceList = () => {
 			className="relative py-20 overflow-hidden"
 			aria-labelledby="prices-heading"
 		>
-			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-primary-50/30 to-white" />
+			<div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/30 to-white" />
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="max-w-3xl mx-auto text-center">
 					<h2
 						id="prices-heading"
-						className="text-3xl md:text-4xl font-bold tracking-tight text-primary-700"
+						className="text-3xl md:text-4xl font-bold tracking-tight text-gray-700"
 					>
 						{t("prices.title")}
 					</h2>
@@ -117,17 +117,17 @@ const PriceList = () => {
 						return (
 							<article
 								key={room.type}
-								className={`relative overflow-hidden rounded-3xl border border-primary-100/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
-									room.highlight ? "ring-2 ring-primary-200/50" : ""
+								className={`relative overflow-hidden rounded-3xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+									room.highlight ? "ring-2 ring-gray-300/50" : ""
 								}`}
 							>
-								<div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-primary-200/10 blur-3xl" />
-								<div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-primary-100/10 blur-3xl" />
+								<div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-gray-200/10 blur-3xl" />
+								<div className="absolute -left-12 -bottom-16 h-52 w-52 rounded-full bg-gray-100/10 blur-3xl" />
 
 								<div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
 									<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
 										<div className="flex-1">
-											<div className="inline-flex items-center gap-2 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-600 shadow-sm">
+											<div className="inline-flex items-center gap-2 rounded-full bg-gray-100/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gray-600 shadow-sm">
 												{accentLabel}
 											</div>
 											<h3 className="mt-3 text-2xl font-bold text-gray-900">
@@ -137,11 +137,11 @@ const PriceList = () => {
 												{description}
 											</p>
 										</div>
-										<div className="text-center sm:text-right bg-primary-50/80 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
+										<div className="text-center sm:text-right bg-gray-50/80 rounded-lg px-3 py-2 shadow-sm sm:flex-shrink-0">
 											<span className="text-xs uppercase tracking-wider text-gray-600 font-semibold block">
 												{t("prices.pricePerNight")}
 											</span>
-											<p className="text-lg font-semibold text-primary-700">
+											<p className="text-lg font-semibold text-gray-700">
 												{basePrice}
 											</p>
 										</div>
@@ -151,13 +151,13 @@ const PriceList = () => {
 										{room.prices.map(price => (
 											<div
 												key={`${room.type}-${price.guests}`}
-												className="flex items-center justify-between rounded-xl border border-primary-100/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-primary-200 transition-all duration-300"
+												className="flex items-center justify-between rounded-xl border border-gray-200/50 bg-white/90 px-3 sm:px-4 py-2.5 shadow-sm hover:border-gray-300 transition-all duration-300"
 											>
 												<dt className="text-sm font-semibold text-gray-700">
 													{price.guests}
 												</dt>
 												<dd className="flex items-baseline">
-													<span className="text-lg sm:text-xl font-bold text-primary-700">
+													<span className="text-lg sm:text-xl font-bold text-gray-800">
 														{formatAmount.format(price.amount)}
 													</span>
 													<span className="ml-1 text-xs font-medium text-gray-600 self-start mt-1">
@@ -174,7 +174,7 @@ const PriceList = () => {
 											return (
 												<span
 													key={amenityKey}
-													className="inline-flex items-center gap-1.5 rounded-full bg-primary-50/80 px-3 py-1 text-xs font-semibold text-primary-700 border border-primary-100/50 shadow-sm"
+													className="inline-flex items-center gap-1.5 rounded-full bg-gray-50/80 px-3 py-1 text-xs font-semibold text-gray-700 border border-gray-200/50 shadow-sm"
 												>
 													{Icon ? (
 														<Icon
@@ -193,7 +193,7 @@ const PriceList = () => {
 											href="https://booking-universitycentre.otelms.com/booking/rooms/"
 											target="_blank"
 											rel="noopener noreferrer"
-											className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full sm:max-w-[180px]"
+											className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:bg-gray-800 w-full sm:max-w-[180px]"
 										>
 											{t("rooms.bookNow")}
 											<ArrowUpRight
@@ -212,10 +212,10 @@ const PriceList = () => {
 					{callouts.map(({ icon: Icon, title, accent }, index) => (
 						<div
 							key={`${title}-${index}`}
-							className="relative overflow-hidden rounded-2xl border border-primary-100/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+							className="relative overflow-hidden rounded-2xl border border-gray-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300"
 						>
-							<div className="mb-4 inline-flex items-center gap-3 text-primary-600">
-								<span className="rounded-xl bg-primary-50/80 p-3">
+							<div className="mb-4 inline-flex items-center gap-3 text-gray-600">
+								<span className="rounded-xl bg-gray-50/80 p-3">
 									<Icon
 										className="h-5 w-5"
 										aria-hidden="true"
@@ -226,7 +226,7 @@ const PriceList = () => {
 								{title}
 							</p>
 							{accent && (
-								<p className="mt-3 text-xl font-semibold text-primary-700">
+								<p className="mt-3 text-base font-semibold text-gray-700">
 									{accent}
 								</p>
 							)}
@@ -239,7 +239,7 @@ const PriceList = () => {
 						href="https://booking-universitycentre.otelms.com/booking/rooms/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+						className="inline-flex items-center justify-center gap-3 rounded-full bg-gray-900 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:bg-gray-800"
 					>
 						{t("booking.title")}
 						<ArrowUpRight
