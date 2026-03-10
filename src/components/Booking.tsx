@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Star, ChevronDown, Loader2 } from 'lucide-react';
+import { Star, ChevronRight, Loader2 } from 'lucide-react';
 
 function Booking() {
   const { t } = useTranslation();
@@ -22,31 +22,39 @@ function Booking() {
   }, []);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+    <section className="py-24 bg-[#f5f5f7]">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           <button
             onClick={() => setIsExpanded(prev => !prev)}
-            className="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors"
+            className="group w-full flex items-center justify-between px-7 py-6 transition-colors hover:bg-gray-50/50"
             aria-expanded={isExpanded}
           >
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center">
-                <Star className="w-4 h-4 text-white" />
+            <div className="flex items-center gap-5">
+              {/* Rating badge */}
+              <div className="relative flex items-center justify-center w-14 h-14 rounded-2xl bg-[#003580] shadow-lg shadow-[#003580]/20">
+                <span className="text-white font-bold text-lg leading-none">9.5</span>
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center shadow-sm">
+                  <Star className="w-3 h-3 text-yellow-700 fill-yellow-700" />
+                </div>
               </div>
+
               <div className="text-left">
-                <h3 className="font-semibold text-gray-900">{t('info.description.welcome')} Booking.com</h3>
-                <p className="text-sm text-gray-500 mt-0.5">{t('reviews.subtitle')}</p>
+                <h3 className="text-lg font-semibold text-gray-900 tracking-tight">
+                  {t('info.description.welcome')} Booking.com
+                </h3>
+                <p className="text-[13px] text-gray-400 mt-0.5">{t('reviews.subtitle')}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span>{isExpanded ? t('reviews.collapse') : t('reviews.expand')}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+
+            <div className="flex items-center gap-1.5 text-[13px] font-medium text-gray-400 group-hover:text-gray-600 transition-colors">
+              <span className="hidden sm:inline">{isExpanded ? t('reviews.collapse') : t('reviews.expand')}</span>
+              <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
             </div>
           </button>
           
           <div 
-            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
               isExpanded ? 'h-[70vh]' : 'h-0'
             }`}
           >
@@ -54,8 +62,8 @@ function Booking() {
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
                   <div className="text-center">
-                    <Loader2 className="w-6 h-6 animate-spin text-gray-400 mx-auto mb-3" />
-                    <p className="text-sm text-gray-500">{t('reviews.loading.message')}</p>
+                    <Loader2 className="w-5 h-5 animate-spin text-gray-300 mx-auto mb-3" />
+                    <p className="text-[13px] text-gray-400">{t('reviews.loading.message')}</p>
                   </div>
                 </div>
               )}
