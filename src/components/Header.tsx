@@ -314,7 +314,7 @@ const Header = () => {
 			<img
 				src={finImg}
 				alt=""
-				className="w-32 h-auto"
+				className="w-32 h-auto drop-shadow-[12px_1px_12px_rgba(20,0,0,0.2)]"
 			/>
 		</div>
 		</>
