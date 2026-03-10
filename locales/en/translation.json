@@ -58,7 +58,7 @@
 		"findUs": "UCU Inn is waiting for you",
 		"description": {
 			"welcome": "Welcome to",
-			"location": "cosy rooms near Stryiskyi Park in Lviv. Book online, by phone or via messenger — and come stay with us!",
+			"location": "cosy rooms near Stryiskyi Park in Lviv. You can book online, by phone or via messenger — we'd love to have you.",
 			"checkInTime": "after 14:00",
 			"checkOutTime": "before 12:00",
 			"additionalInfo": "Plus — a safe shelter, fresh coffee and aromatic tea at the reception",
@@ -73,7 +73,7 @@
 			},
 			"dining": {
 				"title": "UCU Cafeteria on-site:",
-				"text": "Ukrainian and European dishes served daily"
+				"text": "Delicious Ukrainian and European dishes served daily for you"
 			},
 			"activities": {
 				"title": "Hiking & walks:",
