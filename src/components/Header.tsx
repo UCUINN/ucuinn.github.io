@@ -4,6 +4,7 @@ import { Menu, X, Phone, Accessibility, Clock } from "lucide-react";
 import { cn } from "../utils/ui";
 import logoEn from "../img/logo_en.svg";
 import logoUa from "../img/logo_ua.svg";
+import finImg from "../img/fin.png";
 
 const Header = () => {
 	const { t, i18n } = useTranslation();
@@ -11,6 +12,12 @@ const Header = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
 	const [activeSection, setActiveSection] = useState<string>("");
+	const [showFin, setShowFin] = useState(true);
+
+	// Easter egg: Fin mascot - click to toggle visibility
+	const toggleFin = () => {
+		setShowFin(prev => !prev);
+	};
 
 	// Track active section based on scroll position
 	const updateActiveSection = useCallback(() => {
@@ -89,6 +96,7 @@ const Header = () => {
 	const logoImage = i18n.language === "en" ? logoEn : logoUa;
 
 	return (
+		<>
 		<header
 			className={cn(
 				"bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-gray-100",
@@ -293,6 +301,23 @@ const Header = () => {
 				</div>
 			)}
 		</header>
+
+		{/* Easter egg: Fin mascot in the bottom-left corner */}
+		<div
+			className={cn(
+				"fixed left-0 z-[60] cursor-pointer select-none transition-all duration-700 ease-in-out",
+				showFin ? "bottom-0" : "-bottom-32",
+			)}
+			aria-hidden="true"
+			onClick={toggleFin}
+		>
+			<img
+				src={finImg}
+				alt=""
+				className="w-32 h-auto"
+			/>
+		</div>
+		</>
 	);
 };
 
