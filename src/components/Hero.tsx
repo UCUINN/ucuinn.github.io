@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { LazyMotion, domAnimation, m, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { fadeInUpVariant, staggerContainer } from "../utils/ui";
-import heroBg from "../img/rec3pic.webp";
 
 export const Hero = () => {
 	const { t } = useTranslation();
@@ -12,48 +11,76 @@ export const Hero = () => {
 	const textY = useTransform(scrollY, [0, 300], [0, 100]);
 
 	return (
+		<LazyMotion features={domAnimation} strict>
 		<section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32">
 			{/* Background Image with Parallax Effect */}
-			<motion.div
-				initial={{ scale: 1.1 }}
-				animate={{ scale: 1 }}
-				transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+			<m.div
 				style={{ scale }}
 				className="absolute inset-0 overflow-hidden"
 			>
 				<div className="relative w-full h-full">
-					<img
-						src={heroBg}
-						alt="UCU INN Background"
-						width={1920}
-						height={1080}
-						loading="eager"
-						decoding="async"
-						className="absolute inset-0 w-full h-full object-cover brightness-[0.4] object-right transition-all will-change-transform"
-					/>
+					<picture>
+						<source
+							media="(max-width: 640px)"
+							srcSet="/img/hero-mobile.avif"
+							type="image/avif"
+						/>
+						<source
+							media="(max-width: 640px)"
+							srcSet="/img/hero-mobile.webp"
+							type="image/webp"
+						/>
+						<source
+							media="(max-width: 1024px)"
+							srcSet="/img/hero-tablet.avif"
+							type="image/avif"
+						/>
+						<source
+							media="(max-width: 1024px)"
+							srcSet="/img/hero-tablet.webp"
+							type="image/webp"
+						/>
+						<source
+							srcSet="/img/hero-desktop.avif"
+							type="image/avif"
+						/>
+						<source
+							srcSet="/img/hero-desktop.webp"
+							type="image/webp"
+						/>
+						<img
+							src="/img/hero-desktop.webp"
+							alt="UCU INN Background"
+							width={1920}
+							height={1080}
+							fetchPriority="high"
+							decoding="async"
+							className="absolute inset-0 w-full h-full object-cover brightness-[0.4] object-right"
+						/>
+					</picture>
 					<div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 					<div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
 				</div>
-			</motion.div>
+			</m.div>
 
 			{/* Content */}
-			<motion.div
+			<m.div
 				variants={staggerContainer}
 				initial="hidden"
 				animate="visible"
 				style={{ opacity, y: textY }}
 				className="relative z-10 text-left text-white px-4 md:px-8 max-w-5xl mx-auto w-full flex flex-col will-change-transform"
 			>
-				<motion.h1
+				<m.h1
 					variants={fadeInUpVariant}
 					className="text-6xl md:text-8xl font-extrabold mb-4 tracking-tight drop-shadow-2xl will-change-transform"
 				>
 					<span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/95 to-white/90 font-display">
 						UCU INN
 					</span>
-				</motion.h1>
+				</m.h1>
 
-				<motion.div
+				<m.div
 					variants={fadeInUpVariant}
 					className="flex flex-col items-start gap-4 mb-12"
 				>
@@ -70,13 +97,13 @@ export const Hero = () => {
 							</div>
 						))}
 					</div>
-				</motion.div>
+				</m.div>
 
-				<motion.div
+				<m.div
 					variants={fadeInUpVariant}
 					className="flex flex-col sm:flex-row gap-6"
 				>
-					<motion.a
+					<m.a
 						href="https://booking-universitycentre.otelms.com/booking/rooms/en"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -96,11 +123,10 @@ export const Hero = () => {
 							ease: "easeInOut",
 						}}
 						whileHover={{
-							scale: 1.1,
-							boxShadow: "0 10px 30px rgba(255, 255, 255, 0.5)",
+							scale: 1.05,
 						}}
 					>
-						<motion.span
+						<m.span
 							animate={{
 								textShadow: [
 									"0 0 10px rgba(255, 255, 255, 0.8)",
@@ -116,8 +142,8 @@ export const Hero = () => {
 							}}
 						>
 							{t("hero.bookNow")}
-						</motion.span>
-						<motion.svg 
+						</m.span>
+						<m.svg 
 							className="w-4 h-4" 
 							fill="none" 
 							viewBox="0 0 24 24" 
@@ -133,8 +159,8 @@ export const Hero = () => {
 							}}
 						>
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-						</motion.svg>
-					</motion.a>
+						</m.svg>
+					</m.a>
 					<a
 						href="#rooms"
 						className="inline-flex items-center justify-center gap-2 text-white border border-white/30 px-6 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-gray-900 hover:border-white rounded-full"
@@ -144,41 +170,42 @@ export const Hero = () => {
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
 						</svg>
 					</a>
-				</motion.div>
-			</motion.div>
+				</m.div>
+			</m.div>
 
 			{/* Scroll Indicator */}
-			<motion.div
+			<m.div
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.5, duration: 0.5 }}
 				style={{ opacity }}
 				className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4"
 			>
-				<motion.p
+				<m.p
 					animate={{ opacity: [0.5, 1, 0.5] }}
 					transition={{ duration: 2, repeat: Infinity }}
 					className="text-white/80 text-sm tracking-wider uppercase"
-				></motion.p>
-				<motion.div
+				></m.p>
+				<m.div
 					animate={{ y: [0, 10, 0] }}
 					transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
 					className="w-8 h-14 border-2 border-white/80 rounded-full flex items-start justify-center p-2 backdrop-blur-sm"
 				>
-					<motion.div
+					<m.div
 						animate={{ y: [0, 16, 0] }}
 						transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
 						className="w-1 h-3 bg-white rounded-full"
 					/>
-				</motion.div>
-				<motion.div
+				</m.div>
+				<m.div
 					animate={{ y: [0, 5, 0] }}
 					transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
 				>
 					<ChevronDown className="w-6 h-6 text-white/80" />
-				</motion.div>
-			</motion.div>
+				</m.div>
+			</m.div>
 		</section>
+		</LazyMotion>
 	);
 };
 

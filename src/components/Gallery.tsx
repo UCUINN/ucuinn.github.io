@@ -2,16 +2,10 @@ import { useCallback, useEffect, useRef, useState, type ComponentType } from "re
 import { useTranslation } from "react-i18next";
 import { ImagePlus, ZoomIn } from "lucide-react";
 import rec3 from "../img/rec3pic.webp";
-import rec4 from "../img/rec4pic.webp";
-import rec5 from "../img/rec5pic.webp";
-import rec6 from "../img/rec6pic.webp";
-import rec7 from "../img/rec7pic.webp";
 import rec8 from "../img/rec8pic.webp";
 import rec9 from "../img/rec9pic.webp";
-import rec10 from "../img/rec10pic.webp";
 import rec11 from "../img/rec11pic.webp";
 import rec12 from "../img/rec12pic.webp";
-import rec13 from "../img/rec13pic.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
@@ -56,20 +50,35 @@ function Gallery() {
 
   const images: ImageItem[] = [
     { src: rec3, caption: t("gallery.reception") },
-    { src: rec5, caption: t("gallery.receptionDesk") },
-    { src: rec4, caption: t("gallery.waitingArea") },
+    { src: "/img/gallery-5-thumb.webp", caption: t("gallery.receptionDesk") },
+    { src: "/img/gallery-4-thumb.webp", caption: t("gallery.waitingArea") },
     { src: rec9, caption: t("gallery.doubleRoom") },
-    { src: rec6, caption: t("gallery.twinRoom") },
-    { src: rec7, caption: t("gallery.doubleRoom") },
+    { src: "/img/gallery-6-thumb.webp", caption: t("gallery.twinRoom") },
+    { src: "/img/gallery-7-thumb.webp", caption: t("gallery.doubleRoom") },
     { src: rec8, caption: t("gallery.suite1") },
     { src: rec9, caption: t("gallery.suite2") },
-    { src: rec10, caption: t("gallery.suite3") },
+    { src: "/img/gallery-10-thumb.webp", caption: t("gallery.suite3") },
     { src: rec11, caption: t("gallery.suite3") },
     { src: rec12, caption: t("gallery.bathroom") },
-    { src: rec13, caption: t("gallery.lounge") },
+    { src: "/img/gallery-13-thumb.webp", caption: t("gallery.lounge") },
   ];
 
-  const slides = images.map((image) => ({
+  const fullImages: ImageItem[] = [
+    { src: rec3, caption: t("gallery.reception") },
+    { src: "/img/gallery-5-full.webp", caption: t("gallery.receptionDesk") },
+    { src: "/img/gallery-4-full.webp", caption: t("gallery.waitingArea") },
+    { src: rec9, caption: t("gallery.doubleRoom") },
+    { src: "/img/gallery-6-full.webp", caption: t("gallery.twinRoom") },
+    { src: "/img/gallery-7-full.webp", caption: t("gallery.doubleRoom") },
+    { src: rec8, caption: t("gallery.suite1") },
+    { src: rec9, caption: t("gallery.suite2") },
+    { src: "/img/gallery-10-full.webp", caption: t("gallery.suite3") },
+    { src: rec11, caption: t("gallery.suite3") },
+    { src: rec12, caption: t("gallery.bathroom") },
+    { src: "/img/gallery-13-full.webp", caption: t("gallery.lounge") },
+  ];
+
+  const slides = fullImages.map((image) => ({
     src: image.src,
     description: image.caption,
   }));
@@ -148,11 +157,15 @@ function Gallery() {
               modules={[Navigation, Pagination, Keyboard, EffectFade, Autoplay]}
               spaceBetween={0}
               slidesPerView={1}
-              loop
-              navigation
+              loop={true}
+              loopAdditionalSlides={2}
+              navigation={true}
               pagination={{ clickable: true, el: ".swiper-pagination-custom" }}
               keyboard={{ enabled: true }}
               effect="fade"
+              fadeEffect={{
+                crossFade: true
+              }}
               autoplay={{
                 delay: 4000,
                 disableOnInteraction: false,

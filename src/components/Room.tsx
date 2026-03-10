@@ -1,7 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { ArrowUpRight, Bed, Users, Wifi, Check, type LucideIcon } from "lucide-react";
-import rec9 from "../img/rec9pic.webp";
-import rec11 from "../img/rec11pic.webp";
 
 interface RoomCard {
 	id: "twin" | "suite";
@@ -27,7 +25,7 @@ const Room = () => {
 	const rooms: RoomCard[] = [
 		{
 			id: "twin",
-			image: rec9,
+			image: "/img/room-twin-desktop.webp",
 			accent: t("prices.roomTypes.twin.namename"),
 			title: t("rooms.twin.title"),
 			description: t("rooms.twin.description"),
@@ -40,7 +38,7 @@ const Room = () => {
 		},
 		{
 			id: "suite",
-			image: rec11,
+			image: "/img/room-suite-desktop.webp",
 			accent: t("prices.roomTypes.suite.namename"),
 			title: t("rooms.semiLuxury.title"),
 			description: t("rooms.semiLuxury.description"),
@@ -83,15 +81,31 @@ const Room = () => {
 							}`}
 						>
 							<div className="relative h-56 sm:h-64 overflow-hidden">
-								<img
-									src={room.image}
-									alt={room.title}
-									loading="lazy"
-									decoding="async"
-									width="800"
-									height="600"
-									className="h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
-								/>
+								<picture>
+									<source
+										media="(max-width: 640px)"
+										srcSet={room.id === "twin" ? "/img/room-twin-mobile.avif" : "/img/room-suite-mobile.avif"}
+										type="image/avif"
+									/>
+									<source
+										media="(max-width: 640px)"
+										srcSet={room.id === "twin" ? "/img/room-twin-mobile.webp" : "/img/room-suite-mobile.webp"}
+										type="image/webp"
+									/>
+									<source
+										srcSet={room.id === "twin" ? "/img/room-twin-desktop.avif" : "/img/room-suite-desktop.avif"}
+										type="image/avif"
+									/>
+									<img
+										src={room.image}
+										alt={room.title}
+										loading="lazy"
+										decoding="async"
+										width="800"
+										height="600"
+										className="h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-105"
+									/>
+								</picture>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 								<span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 shadow-md">
 									{room.accent}

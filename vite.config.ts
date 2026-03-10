@@ -2,7 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import type { PluginOption } from 'vite';
-import clickToComponent from 'vite-plugin-react-click-to-component';
+import { reactClickToComponent } from 'vite-plugin-react-click-to-component';
+import viteCompression from 'vite-plugin-compression';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const reloadTranslations = (): PluginOption => ({
   name: 'reload-translation-files',
@@ -28,10 +30,26 @@ export default defineConfig({
         ]
       }
     }),
-    clickToComponent({
-      editor: 'vscode-remote://wsl+Ubuntu/home/ubuntuvm/Projects/ucu-inn/'
-    }),
+    reactClickToComponent(),
     reloadTranslations(),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 1024,
+      deleteOriginFile: false,
+    }),
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 1024,
+      deleteOriginFile: false,
+    }),
+    visualizer({
+      filename: './dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+    }) as PluginOption,
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'img/*.png', 'img/*.svg'],
@@ -120,15 +138,32 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Create separate chunks for vendor libraries
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('scheduler')) {
+            // React core
+            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
               return 'react-vendor';
             }
+            // Framer Motion - heavy animation library
+            if (id.includes('framer-motion')) {
+              return 'framer-vendor';
+            }
+            // i18next translation
             if (id.includes('i18next')) {
               return 'i18n-vendor';
             }
-            return 'vendor'; // All other dependencies
+            // Swiper carousel
+            if (id.includes('swiper')) {
+              return 'swiper-vendor';
+            }
+            // Lightbox
+            if (id.includes('yet-another-react-lightbox')) {
+              return 'lightbox-vendor';
+            }
+            // Lucide icons
+            if (id.includes('lucide-react')) {
+              return 'icons-vendor';
+            }
+            return 'vendor';
           }
         },
         // Optimize chunk naming for better caching
@@ -146,12 +181,13 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1000,
-    assetsInlineLimit: 4096, // 4kb
+    chunkSizeWarningLimit: 500,
+    assetsInlineLimit: 2048,
     sourcemap: false,
     minify: 'esbuild',
-    target: 'esnext',
-    reportCompressedSize: false,
+    target: 'es2020',
+    reportCompressedSize: true,
+    cssCodeSplit: true,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],

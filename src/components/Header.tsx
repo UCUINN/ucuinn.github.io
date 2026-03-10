@@ -4,7 +4,6 @@ import { Menu, X, Phone, Accessibility, Clock } from "lucide-react";
 import { cn } from "../utils/ui";
 import logoEn from "../img/logo_en.svg";
 import logoUa from "../img/logo_ua.svg";
-import finImg from "../img/fin.png";
 import flagUs from "../img/flag-us.svg";
 import flagUa from "../img/flag-ua.svg";
 
@@ -15,11 +14,23 @@ const Header = () => {
 	const [lastScrollY, setLastScrollY] = useState(0);
 	const [activeSection, setActiveSection] = useState<string>("");
 	const [showFin, setShowFin] = useState(true);
+	const [finLoaded, setFinLoaded] = useState(false);
 
-	// Easter egg: Fin mascot - click to toggle visibility
+	// Easter egg: Fin mascot - lazy load on first interaction
 	const toggleFin = () => {
+		if (!finLoaded) {
+			setFinLoaded(true);
+		}
 		setShowFin(prev => !prev);
 	};
+
+	// Lazy load fin image after page is idle
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setFinLoaded(true);
+		}, 3000);
+		return () => clearTimeout(timer);
+	}, []);
 
 	// Track active section based on scroll position
 	const updateActiveSection = useCallback(() => {
@@ -306,21 +317,26 @@ const Header = () => {
 			)}
 		</header>
 
-		{/* Easter egg: Fin mascot in the bottom-left corner */}
-		<div
-			className={cn(
-				"fixed left-0 z-[60] cursor-pointer select-none transition-all duration-700 ease-in-out",
-				showFin ? "bottom-0" : "-bottom-32",
-			)}
-			aria-hidden="true"
-			onClick={toggleFin}
-		>
-			<img
-				src={finImg}
-				alt=""
-				className="w-32 h-auto drop-shadow-[12px_1px_12px_rgba(20,0,0,0.2)]"
-			/>
-		</div>
+		{/* Easter egg: Fin mascot in the bottom-left corner - lazy loaded */}
+		{finLoaded && (
+			<div
+				className={cn(
+					"fixed left-0 z-[60] cursor-pointer select-none transition-all duration-700 ease-in-out",
+					showFin ? "bottom-0" : "-bottom-32",
+				)}
+				aria-hidden="true"
+				onClick={toggleFin}
+			>
+				<img
+					src="/img/fin-optimized.webp"
+					alt=""
+					loading="lazy"
+					width="256"
+					height="256"
+					className="w-32 h-auto drop-shadow-[12px_1px_12px_rgba(20,0,0,0.2)]"
+				/>
+			</div>
+		)}
 		</>
 	);
 };
