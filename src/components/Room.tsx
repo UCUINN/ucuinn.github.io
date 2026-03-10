@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ArrowUpRight, Bed, Users, Wifi, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Bed, Users, Wifi, Check, type LucideIcon } from "lucide-react";
 import rec9 from "../img/rec9pic.webp";
 import rec11 from "../img/rec11pic.webp";
 
@@ -121,11 +121,17 @@ const Room = () => {
 										href="https://booking-universitycentre.otelms.com/booking/rooms/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto"
+										className="group/btn relative inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-green-600 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto overflow-hidden"
 									>
-										{t("rooms.bookNow")}
+										<span className="relative z-10 transition-colors duration-300">
+											{t("rooms.bookNow")}
+										</span>
 										<ArrowUpRight
-											className="h-4 w-4"
+											className="h-4 w-4 transition-all duration-300 group-hover/btn:opacity-0 group-hover/btn:scale-0 relative z-10"
+											aria-hidden="true"
+										/>
+										<Check
+											className="h-5 w-5 absolute right-6 opacity-0 scale-0 transition-all duration-300 group-hover/btn:opacity-100 group-hover/btn:scale-100 z-10"
 											aria-hidden="true"
 										/>
 									</a>

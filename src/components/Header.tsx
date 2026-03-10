@@ -5,6 +5,8 @@ import { cn } from "../utils/ui";
 import logoEn from "../img/logo_en.svg";
 import logoUa from "../img/logo_ua.svg";
 import finImg from "../img/fin.png";
+import flagUs from "../img/flag-us.svg";
+import flagUa from "../img/flag-ua.svg";
 
 const Header = () => {
 	const { t, i18n } = useTranslation();
@@ -150,26 +152,26 @@ const Header = () => {
 							<button
 								onClick={() => changeLanguage("en")}
 								className={cn(
-									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0",
+									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0 flex items-center gap-1",
 									i18n.language === "en"
 										? "bg-white text-gray-700 shadow-sm"
 										: "text-gray-600 hover:text-gray-900 hover:bg-white/50",
 								)}
 							>
-								<span className="sm:hidden">🇺🇸</span>
-								<span className="hidden sm:inline">🇺🇸 EN</span>
+								<img src={flagUs} alt="US" className="w-5 h-5" />
+								<span className="hidden sm:inline">EN</span>
 							</button>
 							<button
 								onClick={() => changeLanguage("ua")}
 								className={cn(
-									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0",
+									"px-1 py-1 rounded-md text-xs font-semibold transition-all duration-300 min-w-0 flex items-center gap-1",
 									i18n.language === "ua"
 										? "bg-white text-gray-700 shadow-sm"
 										: "text-gray-600 hover:text-gray-900 hover:bg-white/50",
 								)}
 							>
-								<span className="sm:hidden">🇺🇦</span>
-								<span className="hidden sm:inline">🇺🇦 UA</span>
+								<img src={flagUa} alt="UA" className="w-5 h-5" />
+								<span className="hidden sm:inline">UA</span>
 							</button>
 						</div>
 
@@ -274,13 +276,14 @@ const Header = () => {
 									setIsMenuOpen(false);
 								}}
 								className={cn(
-									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300",
+									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300 flex items-center gap-2",
 									i18n.language === "en"
 										? "bg-gray-100 text-gray-700 shadow-sm"
 										: "text-gray-700 hover:bg-gray-50",
 								)}
 							>
-								🇺🇸 English
+								<img src={flagUs} alt="US" className="w-6 h-6" />
+								English
 							</button>
 							<button
 								onClick={() => {
@@ -288,13 +291,14 @@ const Header = () => {
 									setIsMenuOpen(false);
 								}}
 								className={cn(
-									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300",
+									"px-6 py-2.5 rounded-xl text-base font-medium transition-all duration-300 flex items-center gap-2",
 									i18n.language === "ua"
 										? "bg-gray-100 text-gray-700 shadow-sm"
 										: "text-gray-700 hover:bg-gray-50",
 								)}
 							>
-								🇺🇦 Українська
+								<img src={flagUa} alt="UA" className="w-5 h-4" />
+								Українська
 							</button>
 						</div>
 					</div>
