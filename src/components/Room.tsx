@@ -78,7 +78,7 @@ const Room = () => {
 					{rooms.map(room => (
 						<article
 							key={room.id}
-							className={`group relative overflow-hidden rounded-3xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+							className={`group relative overflow-hidden rounded-3xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full ${
 								room.highlight ? "ring-2 ring-gray-300/50" : ""
 							}`}
 						>
@@ -98,7 +98,7 @@ const Room = () => {
 								</span>
 							</div>
 
-							<div className="relative z-10 flex flex-col gap-6 p-6 sm:p-8">
+							<div className="relative z-10 flex flex-col gap-6 p-6 sm:p-8 flex-1">
 								<div>
 									<h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
 										{room.title}
@@ -108,7 +108,7 @@ const Room = () => {
 									</p>
 								</div>
 
-								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-gray-200/50 bg-white/90 px-5 sm:px-6 py-4 shadow-sm">
+								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-gray-200/50 bg-white/90 px-5 sm:px-6 py-4 shadow-sm mt-auto">
 									<div className="text-center sm:text-left">
 										<span className="text-xs uppercase tracking-wide text-gray-500 font-semibold block mb-1">
 											{t("prices.pricePerNight")}

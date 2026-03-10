@@ -76,17 +76,65 @@ export const Hero = () => {
 					variants={fadeInUpVariant}
 					className="flex flex-col sm:flex-row gap-6"
 				>
-					<a
+					<motion.a
 						href="https://booking-universitycentre.otelms.com/booking/rooms/en"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full hover:bg-white/90 transition-all duration-300 text-sm font-medium tracking-wide"
+						className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full text-sm font-medium tracking-wide relative overflow-hidden"
+						animate={{
+							scale: [1, 1.05, 1],
+							boxShadow: [
+								"0 0 0 0 rgba(255, 255, 255, 0.7)",
+								"0 0 0 10px rgba(255, 255, 255, 0)",
+								"0 0 0 0 rgba(255, 255, 255, 0)",
+							],
+						}}
+						transition={{
+							duration: 2,
+							repeat: Infinity,
+							repeatType: "loop",
+							ease: "easeInOut",
+						}}
+						whileHover={{
+							scale: 1.1,
+							boxShadow: "0 10px 30px rgba(255, 255, 255, 0.5)",
+						}}
 					>
-						{t("hero.bookNow")}
-						<svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<motion.span
+							animate={{
+								textShadow: [
+									"0 0 10px rgba(255, 255, 255, 0.8)",
+									"0 0 20px rgba(255, 255, 255, 1)",
+									"0 0 10px rgba(255, 255, 255, 0.8)",
+								],
+							}}
+							transition={{
+								duration: 2,
+								repeat: Infinity,
+								repeatType: "loop",
+								ease: "easeInOut",
+							}}
+						>
+							{t("hero.bookNow")}
+						</motion.span>
+						<motion.svg 
+							className="w-4 h-4" 
+							fill="none" 
+							viewBox="0 0 24 24" 
+							stroke="currentColor"
+							animate={{
+								x: [0, 3, 0],
+							}}
+							transition={{
+								duration: 1.5,
+								repeat: Infinity,
+								repeatType: "loop",
+								ease: "easeInOut",
+							}}
+						>
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-						</svg>
-					</a>
+						</motion.svg>
+					</motion.a>
 					<a
 						href="#rooms"
 						className="inline-flex items-center justify-center gap-2 text-white border border-white/30 px-6 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-gray-900 hover:border-white rounded-full"
